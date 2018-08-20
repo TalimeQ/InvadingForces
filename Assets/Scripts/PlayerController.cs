@@ -77,17 +77,22 @@ public class PlayerController : MonoBehaviour {
         float verticalThrow = Input.GetAxis("Vertical");
         float verticalMovementRate = verticalThrow * Time.deltaTime * xSpeed;
         float yNewRawPosition = transform.localPosition.y + verticalMovementRate;
-    
-      //  print("Y new position :: " + yNewRawPosition);
-       
-        transform.localPosition = new Vector3(transform.localPosition.x, yNewRawPosition, transform.localPosition.z);
+
+        // Moze obnazyc designerowi?
+        float yNewPosition = Mathf.Clamp(yNewRawPosition, -4.5f, 4.5f);
+
+        transform.localPosition = new Vector3(transform.localPosition.x, yNewPosition, transform.localPosition.z);
 
         float horizontalThrow = Input.GetAxis("Horizontal");
         float horizontalMovementRate = horizontalThrow * Time.deltaTime * ySpeed;
         float xNewRawPosition = transform.localPosition.x + horizontalMovementRate;
-      //  print("X new position :: " + xNewRawPosition);
-        transform.localPosition = new Vector3(xNewRawPosition, transform.localPosition.y, transform.localPosition.z);
 
+        // To tez mozna by obnazyc mnie w designerskim kapeluszu :>
+        float xNewPosition = Mathf.Clamp(xNewRawPosition, -8f, 8f);
+
+        transform.localPosition = new Vector3(xNewPosition, transform.localPosition.y, transform.localPosition.z);
+        
+    
        
        
         // TODO some clamping so the player dont leaves the map.

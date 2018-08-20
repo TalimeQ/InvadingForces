@@ -56,15 +56,11 @@ public class BigEnemyMovement : MonoBehaviour {
         movementStartingY = transform.position.y;
         gotInterpolationData = true;
 
-        /*
-        float PseudoDistance = Mathf.Abs(movementStartingX) - Mathf.Abs(movementEndX) + Mathf.Abs(movementStartingY) - Mathf.Abs(movementEndY);
-        print("Total PseudoDistance:: " + PseudoDistance);
-        */
+
         float distance = Vector3.Distance(new Vector3(movementStartingX, movementStartingY, 0), new Vector3(movementEndX, movementEndY, 0));
 
-      //  print("Distance " + distance);
+
         float randomDuration = Random.Range(pseudoRandomRangeMin, pseudoRandomRangeMax) * distance;
-       // print("Random Interpolation Duration:: " + randomDuration);
         movementDuration = Mathf.Abs(randomDuration);
 
     }
