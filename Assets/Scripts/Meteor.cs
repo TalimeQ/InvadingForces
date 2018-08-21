@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour {
 
+    // TODO DODAC SPAWN METEOROW.
+
+
+
     bool isMovingLeft = true;
     // whether or not is moving in a slightly curvish manner ;) default 0
     [Range(-1.0f,1.0f)]
@@ -45,16 +49,16 @@ public class Meteor : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // TODO :: ADD POOLING
-        
-        Destroy(gameObject);
-        Destroy(collision.gameObject);
+
+        gameObject.SetActive(false);
+        collision.gameObject.SetActive(false);
         Debug.LogWarning("Meteor ::  Collided with something");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         if(!collision.CompareTag("Bounds"))
-        { Destroy(collision.gameObject); }
+        { collision.gameObject.SetActive(false); }
         
         Debug.LogWarning("Meteor ::  Trigered something");
     }

@@ -7,7 +7,7 @@ public class WaveController : MonoBehaviour {
     [Tooltip("Grace period between spawning first wave of enemies")]
     [SerializeField] int preparationTime = 10;
     [SerializeField]
-    GameObject[] enemyToSpawn;
+    string[] enemySpawnerTags = { "EnemyShip1", "EnemyShip2" };
     [SerializeField]
     private int enemiesToSpawn = 2;
     [SerializeField]
@@ -40,9 +40,20 @@ public class WaveController : MonoBehaviour {
         {
             for( int i = 0; i < enemiesToSpawn; i++)
             {
+
+                // Przerobic bo mozna dojsc do faktu ze rng respi nam tylko 2 na zapelnionym 2kami ekranie. co nie respi nic. Chociaz czy to zle?
                 Vector3 SpawnPosition = new Vector3(Random.Range(minX,maxX), Random.Range(minY,maxY),0);
                 Quaternion spawnRotation = Quaternion.Euler(0,0,-90);
-                Instantiate(enemyToSpawn[Random.Range(0,enemyToSpawn.Length)],SpawnPosition,spawnRotation);
+                var spawnedEnemy = ObjectPooler.SharedInstance.GetPooledObject(enemySpawnerTags[Random.Range(0, enemySpawnerTags.Length)]);
+                if(spawnedEnemy != null)
+                {
+                    spawnedEnemy.transform.position = SpawnPosition;
+                    spawnedEnemy.transform.rotation = spawnRotation;
+                    spawnedEnemy.SetActive(true);
+                }
+                
+                
+
                 yield return new WaitForSeconds(spawnDelay);
             }
             // TODO : USUNAC SZTYWNIAKA

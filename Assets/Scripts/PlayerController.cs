@@ -58,11 +58,18 @@ public class PlayerController : MonoBehaviour {
       
      //  print("Last firing time: " + lastFiringTime + " Time with reload)
             if(NextFireTime <= Time.time)
-        { 
-            Instantiate(defaultBullet, gameObject.transform.localPosition, Quaternion.Euler(0, 0, 0));
-            NextFireTime = Time.time + reloadTime;
-            if (isLaserActive) print("FIRING LASURS");
-            else print("FIRING PLEB WEAPONS!");
+        {
+            GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet");
+            if (bullet != null)
+            {
+                NextFireTime = Time.time + reloadTime;
+                if (isLaserActive) print("FIRING LASURS");
+                else print("FIRING PLEB WEAPONS!");
+                bullet.transform.rotation = Quaternion.identity;
+                bullet.transform.position = gameObject.transform.position + Vector3.up;
+                bullet.SetActive(true);
+            }
+            
         }
         // TODO :: Zastanowic sie czy strzelanie nie powinno byc osobnym komponentem wywolywanym tylko z playerControllera.
 

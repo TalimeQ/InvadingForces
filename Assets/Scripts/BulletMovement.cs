@@ -4,38 +4,40 @@ using UnityEngine;
 
 public class BulletMovement : MonoBehaviour {
 
-    // TODO some object pooling
 
-     // wykminiic czy nie lepiej pollowac go po X dystansu zamiast przy kolizji.
+ 
     [Tooltip("Speed of the player projectile.")]
     [SerializeField] float bulletSpeed = 2.0f;
     public float BulletSpeed { get { return bulletSpeed; } }
-	// Use this for initialization
-	void Start () {
-        // TODO :: Tymczasowe do refaktoru, cale rozwiazanie jebnie jak trzeba bedzie object poolowac.
+    private Rigidbody2D bulletBody;
 
-       var bulletBody =  this.GetComponent<Rigidbody2D>();
-        bulletBody.AddForce(Vector2.up * bulletSpeed);
+
+
+	void Awake () {
+
+      bulletBody =  this.GetComponent<Rigidbody2D>();
+        
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    private void OnEnable()
+    {
+        bulletBody.AddForce(Vector2.up * bulletSpeed);
+    }
+    void Update () {
 		
 	}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Bounds"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         
-       // print("bullet triggered");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
        
             print("Bullet collided");
-            Destroy(gameObject);
-     
+        gameObject.SetActive(false);
+
     }
 }

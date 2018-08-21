@@ -37,7 +37,8 @@ public class RandomEnemyMovement : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void OnEnable()
+    {
         CalculateMovementParameters();
 
 	}

@@ -291,6 +291,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1736368000825410, guid: ceb27ec36e0e19a40ba0fb6361ff2876, type: 2}
+      propertyPath: m_TagString
+      value: EnemyShip1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceb27ec36e0e19a40ba0fb6361ff2876, type: 2}
   m_IsPrefabAsset: 0
@@ -303,8 +307,9 @@ GameObject:
   m_Component:
   - component: {fileID: 387856451}
   - component: {fileID: 387856450}
+  - component: {fileID: 387856452}
   m_Layer: 0
-  m_Name: WaveSpawner
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,9 +327,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preparationTime: 10
-  enemyToSpawn:
-  - {fileID: 1736368000825410, guid: ceb27ec36e0e19a40ba0fb6361ff2876, type: 2}
-  - {fileID: 1839530806184284, guid: 2b81a6df1f6fadf488f31d872413bfec, type: 2}
+  enemySpawnerTags:
+  - EnemyShip1
+  - EnemyShip2
   enemiesToSpawn: 2
   spawnDelay: 0.5
   maxX: 7.5
@@ -341,6 +346,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &387856452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 387856449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232469c29cb320248b5e7bde88e312a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  itemsToPool:
+  - amountToPool: 10
+    objectoPool: {fileID: 1842675659363996, guid: a18d174803bda714e8af5a23a4015d49,
+      type: 2}
+    shouldExpand: 0
+  - amountToPool: 1
+    objectoPool: {fileID: 1528919191}
+    shouldExpand: 0
+  - amountToPool: 1
+    objectoPool: {fileID: 1706803558}
+    shouldExpand: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +754,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1839530806184284, guid: 2b81a6df1f6fadf488f31d872413bfec, type: 2}
+      propertyPath: m_TagString
+      value: EnemyShip2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b81a6df1f6fadf488f31d872413bfec, type: 2}
   m_IsPrefabAsset: 0
@@ -830,6 +862,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1528919191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1839530806184284, guid: 2b81a6df1f6fadf488f31d872413bfec,
+    type: 2}
+  m_PrefabInternal: {fileID: 1353460455}
+--- !u!1 &1706803558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1736368000825410, guid: ceb27ec36e0e19a40ba0fb6361ff2876,
+    type: 2}
+  m_PrefabInternal: {fileID: 352407360}
 --- !u!1 &1880409818
 GameObject:
   m_ObjectHideFlags: 0

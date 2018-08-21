@@ -14,7 +14,8 @@ public class FiniteEnemyMovement : RandomEnemyMovement {
     Vector2 velocity;
 
     // Use this for initialization
-    void Start () {
+    void OnEnable()
+    {
         randomizeMovementLoops();
         CalculateMovementParameters();
         movementBody = GetComponent<Rigidbody2D>();

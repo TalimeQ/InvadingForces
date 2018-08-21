@@ -28,12 +28,12 @@ public class Enemy : MonoBehaviour {
     {
         if(collision.CompareTag("Bounds"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else if(hitpoints <= 0)
         {
             // TODO object pooling
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else
         {
