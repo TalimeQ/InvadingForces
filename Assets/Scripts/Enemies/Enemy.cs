@@ -26,14 +26,17 @@ public class Enemy : MonoBehaviour {
 	}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(hitpoints <= 0)
+        if(collision.CompareTag("Bounds"))
+        {
+            Destroy(gameObject);
+        }
+        else if(hitpoints <= 0)
         {
             // TODO object pooling
             Destroy(gameObject);
         }
         else
         {
-            print(hitpoints);
             hitpoints--;
         }
     }

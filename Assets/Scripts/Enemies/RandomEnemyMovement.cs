@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigEnemyMovement : MonoBehaviour {
+
+public class RandomEnemyMovement : MonoBehaviour {
 
     // TODO :: REFACTOR
     [Header("Movement Range")]
@@ -16,8 +17,6 @@ public class BigEnemyMovement : MonoBehaviour {
     [SerializeField]
     [Tooltip("Minimal Y range of movement")]
     private float minY = 0.0f;
-
-
 
     private float movementStartingX;
     private float movementStartingY;
@@ -36,54 +35,68 @@ public class BigEnemyMovement : MonoBehaviour {
     private float startTime;
     private float movementDuration = 10;
 
-    bool gotInterpolationData = false;
 
 	// Use this for initialization
 	void Start () {
-        InitializeMovement();
+        CalculateMovementParameters();
 
 	}
 	
 	// Update is called once per frame
-    void InitializeMovement()
+    protected void CalculateMovementParameters()
     {
-        movementEndX  = Random.Range(-maxX, maxX);
-        movementEndY = Random.Range(minY, maxY);
-
-
-        startTime = Time.time;
-        movementStartingX = transform.position.x;
-        movementStartingY = transform.position.y;
-        gotInterpolationData = true;
-
-
-        float distance = Vector3.Distance(new Vector3(movementStartingX, movementStartingY, 0), new Vector3(movementEndX, movementEndY, 0));
-
-
-        float randomDuration = Random.Range(pseudoRandomRangeMin, pseudoRandomRangeMax) * distance;
-        movementDuration = Mathf.Abs(randomDuration);
+        RandomizeEndPointVector();
+        InitializeStartingPointData();
+        CalculateMovementDuration();
 
     }
-	void Update ()
+
+    private void CalculateMovementDuration()
+    {
+        // we count distance between vectors because its used as a factor for counting the movement duration.
+        float distance = Vector3.Distance(new Vector3(movementStartingX, movementStartingY, 0), new Vector3(movementEndX, movementEndY, 0));
+        float randomDuration = Random.Range(pseudoRandomRangeMin, pseudoRandomRangeMax) * distance;
+        movementDuration = Mathf.Abs(randomDuration);
+    }
+
+    private void InitializeStartingPointData()
+    {
+        movementStartingX = transform.position.x;
+        movementStartingY = transform.position.y;
+        startTime = Time.time;
+    }
+
+    private void RandomizeEndPointVector()
+    {
+        movementEndX = Random.Range(-maxX, maxX);
+        movementEndY = Random.Range(minY, maxY);
+    }
+
+    void Update ()
     {
         InterpolateMovement();
 
     }
 
-    private void InterpolateMovement()
+     protected  void InterpolateMovement()
     {
         float interpolationTime = (Time.time - startTime) / movementDuration;
         transform.position = new Vector3(Mathf.SmoothStep(movementStartingX, movementEndX, interpolationTime),
-            Mathf.SmoothStep(movementStartingY, movementEndY, interpolationTime), 0
-            );
-        if (interpolationTime >= 1)
+            Mathf.SmoothStep(movementStartingY, movementEndY, interpolationTime), 0);
+        if (CheckMovementRequirements(interpolationTime))
         {
-            gotInterpolationData = false;
+            CalculateMovementParameters(); 
         }
 
-        if (gotInterpolationData == false)
+
+    }
+    protected virtual bool CheckMovementRequirements(float interpolationTime)
+    {
+        if(interpolationTime >= 1)
         {
-            InitializeMovement();
+           
+            return true;
         }
+        return false;
     }
 }
