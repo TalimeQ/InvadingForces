@@ -47,6 +47,8 @@ public class WaveController : MonoBehaviour {
                 var spawnedEnemy = ObjectPooler.SharedInstance.GetPooledObject(enemySpawnerTags[Random.Range(0, enemySpawnerTags.Length)]);
                 if(spawnedEnemy != null)
                 {
+
+                    // TODO :: Fajnie by bylo zeby przeciwnicy przylatywali zza ekranu.
                     spawnedEnemy.transform.position = SpawnPosition;
                     spawnedEnemy.transform.rotation = spawnRotation;
                     spawnedEnemy.SetActive(true);

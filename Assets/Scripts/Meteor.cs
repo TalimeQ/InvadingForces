@@ -34,8 +34,12 @@ public class Meteor : MonoBehaviour {
 
     private void processMeteorMovement()
     {
+        // Todo:: w zwiazku ze respi sie z boku , powinien zaczac lot wolniej aby potem przyspieszyc do makysmalnej wartosci.
+        // Jakas prosta funkcja liniowa styknie.
         if(isMovingLeft)
         {
+
+            // ten vector nie jest relatywny trzeba by zmienic na szajs z enemy.
             transform.localPosition = transform.localPosition + Vector3.left * Time.deltaTime * floatingSpeed;
             transform.localPosition = transform.localPosition + Vector3.up * Time.deltaTime * CurvingValue;
         }
