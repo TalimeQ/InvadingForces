@@ -12,14 +12,18 @@ public class ObstacleSpawner : MonoBehaviour {
 
 
     [Header("Enviromental Obstacle Spawning")]
-    [Range(0, 10)] [Tooltip("How many meteors per second of gameplay should spawn? 10 is pretty hardcore.")]
-    [SerializeField] float meteorsPerSecond =2 ;
+    [Range(0, 10)] [Tooltip("Delay between meteor spawns.")]
+    [SerializeField] float spawnDelayInSeconds = 4 ;
     [Tooltip("Grace period in which meteors do not spawn.")]
     [SerializeField] float gracePeriod = 5.0f;
-    [Tooltip("When enabled meteors will travel in curve as opposed to straight line")]
-    [SerializeField] bool shouldCurve;
     [Tooltip("Whether or not should to randomize meteor speed")]
     [SerializeField] bool randomSpeed = true;
+    [Tooltip("Max meteor speed")]
+    [SerializeField]
+    float maxSpeed = 4.0f;
+    [Tooltip("Min meteor speed")]
+    [SerializeField]
+    float minSpeed = 1.0f;
     [SerializeField] float minY = -4, maxY = 2;
 
     // Use this for initialization
@@ -70,7 +74,7 @@ public class ObstacleSpawner : MonoBehaviour {
         {
 
             // wymyslic jak to sie ma dokladnie przeliczac .-.
-            float timeToNextSpawn = meteorsPerSecond;
+           
             Vector3 spawnPosition = prerandomizeSpawnPosition();
             Quaternion spawnRotation = prerandomizeSpawnRotation(spawnPosition);
             GameObject meteor = ObjectPooler.SharedInstance.GetPooledObject("Meteor");
@@ -78,6 +82,11 @@ public class ObstacleSpawner : MonoBehaviour {
             {
                 meteor.transform.position = spawnPosition;
                 meteor.transform.rotation = spawnRotation;
+                Meteor meteorComp = meteor.GetComponent<Meteor>();
+                if(randomSpeed)
+                {
+                    meteorComp.FloatingSpeed = Random.Range(minSpeed, maxSpeed);
+                }
                 meteor.SetActive(true);
             }
             else
@@ -86,7 +95,7 @@ public class ObstacleSpawner : MonoBehaviour {
             }
             
 
-            yield return new WaitForSeconds(timeToNextSpawn);
+            yield return new WaitForSeconds(spawnDelayInSeconds);
         }
         }
 }

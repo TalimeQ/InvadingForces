@@ -12,21 +12,34 @@ public class Meteor : MonoBehaviour {
 
     bool isMovingLeft = true;
     // whether or not is moving in a slightly curvish manner ;) default 0
-    [Range(-1.0f,1.0f)]
-    [SerializeField]
-    float CurvingValue = 0;
+
+    
 
     // Should be randomized for more funzies
     [SerializeField]
     float floatingSpeed = 2.0f;
+    public float FloatingSpeed { set { floatingSpeed = value; } }
+
+    private Rigidbody2D meteorBody;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+      //  meteorBody = FindObjectOfType<Rigidbody2D>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    void OnEnable()
+    {
+        
+        if(transform.position.x < 0 )
+        {
+            isMovingLeft = false;
+        }
+        else if(transform.position.x > 0)
+        {
+            isMovingLeft = true;
+        }
+    }
+    // Update is called once per frame
+    void Update () {
         processMeteorMovement();
        
 		
@@ -40,14 +53,16 @@ public class Meteor : MonoBehaviour {
         {
 
             // ten vector nie jest relatywny trzeba by zmienic na szajs z enemy.
+
+
             transform.localPosition = transform.localPosition + Vector3.left * Time.deltaTime * floatingSpeed;
-            transform.localPosition = transform.localPosition + Vector3.up * Time.deltaTime * CurvingValue;
         }
         else
         {
             transform.localPosition = transform.localPosition + Vector3.right * Time.deltaTime * floatingSpeed;
-            transform.localPosition = transform.localPosition + Vector3.up * Time.deltaTime * CurvingValue;
+
         }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

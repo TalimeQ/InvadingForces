@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - EnemyShip1
   - EnemyShip2
+  - Meteor
   layers:
   - Default
   - TransparentFX

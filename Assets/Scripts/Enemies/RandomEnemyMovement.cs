@@ -26,11 +26,11 @@ public class RandomEnemyMovement : MonoBehaviour {
 
     [SerializeField]
     [Tooltip("Minimal speed change variable")]
-    public float pseudoRandomRangeMin = 0.4f;
+    private float pseudoRandomRangeMin = 0.4f;
 
     [SerializeField]
     [Tooltip("Maximal speed change variable")]
-    public float pseudoRandomRangeMax = 0.5f;
+    private float pseudoRandomRangeMax = 0.5f;
 
     private float startTime;
     private float movementDuration = 10;
