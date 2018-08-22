@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114949543980186760}
   m_Layer: 0
   m_Name: Assaultboat
-  m_TagString: Untagged
+  m_TagString: EnemyShip1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: 957722e0122c5e1408be1826c11d14bc, type: 3}
   m_Color: {r: 0.9994542, g: 1, b: 0.07075471, a: 1}
   m_FlipX: 0

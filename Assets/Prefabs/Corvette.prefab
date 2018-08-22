@@ -21,12 +21,13 @@ GameObject:
   - component: {fileID: 4326026078493562}
   - component: {fileID: 212472098672848850}
   - component: {fileID: 114048953972187242}
+  - component: {fileID: 114233033916307160}
   - component: {fileID: 114039849489337442}
   - component: {fileID: 50296415675451122}
   - component: {fileID: 61862553952314490}
   m_Layer: 0
   m_Name: Corvette
-  m_TagString: Untagged
+  m_TagString: EnemyShip2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,6 +120,17 @@ MonoBehaviour:
   minY: 1
   pseudoRandomRangeMin: 0.5
   pseudoRandomRangeMax: 0.6
+--- !u!114 &114233033916307160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1839530806184284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b395477b6640624686e5ef848c0c2e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212472098672848850
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -153,7 +165,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: 4116730fb1b9d1c44b5d484c9c0122ae, type: 3}
   m_Color: {r: 0.9381422, g: 0.9811321, b: 0.023139905, a: 1}
   m_FlipX: 0

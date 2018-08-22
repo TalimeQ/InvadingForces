@@ -15,12 +15,11 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     [Tooltip("Score points awarded for destroying enemy")]
     private int scoreForKill;
-	// Use this for initialization
+
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
@@ -32,7 +31,6 @@ public class Enemy : MonoBehaviour {
         }
         else if(hitpoints <= 0)
         {
-            // TODO object pooling
             gameObject.SetActive(false);
         }
         else

@@ -26,16 +26,13 @@ public class ObstacleSpawner : MonoBehaviour {
     float minSpeed = 1.0f;
     [SerializeField] float minY = -4, maxY = 2;
 
-    // Use this for initialization
     void Start() {
         StartCoroutine(SpawnMeteors());
     }
 
-    // Update is called once per frame
     void Update() {
 
     }
-    // doczytac o referencjach tutaj, bo w sumie tak by bylo lepiej przekazac szajs. i zrobic jedna funkcje zamiast 2
     Vector3 prerandomizeSpawnPosition()
     {
 
@@ -43,15 +40,12 @@ public class ObstacleSpawner : MonoBehaviour {
         float vectorY = Random.Range(minY, maxY);
         if (Random.Range(0, 3)  == 1)
         {
-            // Respimy po prawej stronie wiec wektory prawostronne
-            
             return new Vector3(8, vectorY, 0);
             // Fajnie by bylo zeby przylatywal zza ekranu :)
         }
         else
         {
             return new Vector3(-8, vectorY, 0);
-            // Respimy po lewej stronie wiec wektory lewostronne
         }
     }
     Quaternion prerandomizeSpawnRotation(Vector3 spawnPosition)
@@ -73,8 +67,6 @@ public class ObstacleSpawner : MonoBehaviour {
         while(true)
         {
 
-            // wymyslic jak to sie ma dokladnie przeliczac .-.
-           
             Vector3 spawnPosition = prerandomizeSpawnPosition();
             Quaternion spawnRotation = prerandomizeSpawnRotation(spawnPosition);
             GameObject meteor = ObjectPooler.SharedInstance.GetPooledObject("Meteor");
@@ -89,11 +81,6 @@ public class ObstacleSpawner : MonoBehaviour {
                 }
                 meteor.SetActive(true);
             }
-            else
-            {
-                print("dupa");
-            }
-            
 
             yield return new WaitForSeconds(spawnDelayInSeconds);
         }

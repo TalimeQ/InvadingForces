@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class RandomEnemyMovement : MonoBehaviour {
 
-    // TODO :: REFACTOR
     [Header("Movement Range")]
     [SerializeField]
     [Tooltip("Maximal  Y  range of movement")]
@@ -43,7 +42,11 @@ public class RandomEnemyMovement : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
+	/// <summary>
+    /// Calculates movement parameters, takes nothing,
+    /// modifies start points and end points creating vectors from them.
+    /// Also counts time to make the movement
+    /// </summary>
     protected void CalculateMovementParameters()
     {
         RandomizeEndPointVector();

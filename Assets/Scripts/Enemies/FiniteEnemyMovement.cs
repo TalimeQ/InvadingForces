@@ -30,7 +30,6 @@ public class FiniteEnemyMovement : RandomEnemyMovement {
         }
         else
         {
-            Debug.Log("WE MOVIN DOWN BOIS");
             MoveDownwards();
         }
     }

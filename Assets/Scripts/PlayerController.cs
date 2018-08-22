@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
     private void ProcessShooting()
     {
       
-     //  print("Last firing time: " + lastFiringTime + " Time with reload)
+  
             if(NextFireTime <= Time.time)
         {
             GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet");
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour {
         }
         // TODO :: Zastanowic sie czy strzelanie nie powinno byc osobnym komponentem wywolywanym tylko z playerControllera.
 
-        // przypisac mu jakies wlasciwosci;
+
 
 
     }
@@ -99,15 +99,5 @@ public class PlayerController : MonoBehaviour {
 
         transform.localPosition = new Vector3(xNewPosition, transform.localPosition.y, transform.localPosition.z);
         
-    
-       
-       
-        // TODO some clamping so the player dont leaves the map.
-
-
-
-
-
-       // transform.localPosition = new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z);
     }
 }
