@@ -6,7 +6,10 @@ public class Enemy : MonoBehaviour {
 
     [SerializeField]
     [Tooltip("Number of hits that enemy takes before being destroyed.")]
-    private int hitpoints = 5;
+    private int hitPoints = 5;
+
+    private int currentHitpoints = 5;
+
 
     [SerializeField]
     [Tooltip("Score points earned for hitting the enemy")]
@@ -17,14 +20,18 @@ public class Enemy : MonoBehaviour {
     private int scoreForKill;
 
     private ScoreBoard scoreBoard;
-	void Start () {
+
+    void Start () {
        scoreBoard = FindObjectOfType<ScoreBoard>();
 		
 	}
-	
-	void Update () {
-		
-	}
+
+
+    private void OnEnable()
+    {
+        currentHitpoints = hitPoints;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
     switch (collision.tag)
@@ -50,8 +57,8 @@ public class Enemy : MonoBehaviour {
 
     private void ManageLife(GameObject other)
     {
-        hitpoints--;
-        if(hitpoints <= 0)
+        currentHitpoints--;
+        if(currentHitpoints <= 0)
         {
             gameObject.SetActive(false);
             other.SetActive(false);

@@ -7,9 +7,16 @@ public class ScoreBoard : MonoBehaviour {
     [SerializeField]
     TextMeshProUGUI scoreText;
     int currentScore = 0;
-	// Use this for initialization
+    [SerializeField]
+    [Tooltip("Each time this score multiplier is reached, spawn a boss")]
+    int bossSpawnLimit = 10;
+    int nextBossSpawnsIn;
+    int NextBossSpawnsIn { get { return nextBossSpawnsIn; }  set { nextBossSpawnsIn = value; } }
+    // Use this for initialization
+    public IScoreBoardListener onScoreListener;
 	void Start () {
         scoreText.SetText("Score: 0");
+        nextBossSpawnsIn = bossSpawnLimit;
 	}
 	
 	// Update is called once per frame
@@ -18,5 +25,15 @@ public class ScoreBoard : MonoBehaviour {
     {
         currentScore += scoreToAdd;
         scoreText.SetText("Score: " + currentScore);
+        CheckForBossSpawn();
+    }
+
+    private void CheckForBossSpawn()
+    {
+        if (currentScore > nextBossSpawnsIn)
+        {
+            onScoreListener.OnScoreReached();
+            nextBossSpawnsIn += bossSpawnLimit;
+        }
     }
 }

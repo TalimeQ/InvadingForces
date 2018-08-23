@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveController : MonoBehaviour {
+public class WaveController : MonoBehaviour , IScoreBoardListener {
     [Header("Properties")]
     [Tooltip("Grace period between spawning first wave of enemies")]
     [SerializeField] int preparationTime = 10;
@@ -25,6 +25,8 @@ public class WaveController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         StartCoroutine(SpawnWaves());
+        ScoreBoard scoreBoard = FindObjectOfType<ScoreBoard>();
+        scoreBoard.onScoreListener = this;
 	}
 	
 	// Update is called once per frame
@@ -52,6 +54,7 @@ public class WaveController : MonoBehaviour {
                     spawnedEnemy.transform.position = SpawnPosition;
                     spawnedEnemy.transform.rotation = spawnRotation;
                     spawnedEnemy.SetActive(true);
+
                 }
                 
                 
@@ -62,5 +65,11 @@ public class WaveController : MonoBehaviour {
             yield return new WaitForSeconds(10);
        // TODO doczytac o delegatach.
         }
+    }
+
+    public void OnScoreReached()
+    {
+        // boss spawning code here
+        print("score reached!");
     }
 }
