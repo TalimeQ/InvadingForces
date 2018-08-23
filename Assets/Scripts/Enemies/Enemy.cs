@@ -16,7 +16,9 @@ public class Enemy : MonoBehaviour {
     [Tooltip("Score points awarded for destroying enemy")]
     private int scoreForKill;
 
+    private ScoreBoard scoreBoard;
 	void Start () {
+       scoreBoard = FindObjectOfType<ScoreBoard>();
 		
 	}
 	
@@ -25,17 +27,39 @@ public class Enemy : MonoBehaviour {
 	}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bounds"))
+    switch (collision.tag)
         {
-            gameObject.SetActive(false);
+            case "Bounds":
+                gameObject.SetActive(false);
+                break;
+            case "Meteor":
+                gameObject.SetActive(false);
+                break;
+            case "Player":
+                gameObject.SetActive(false);
+                collision.gameObject.SetActive(false);
+                break;
+            case "Bullet":
+                ManageLife(collision.gameObject);
+                break;
+            default:
+                break;
+
         }
-        else if(hitpoints <= 0)
+    }
+
+    private void ManageLife(GameObject other)
+    {
+        hitpoints--;
+        if(hitpoints <= 0)
         {
             gameObject.SetActive(false);
+            other.SetActive(false);
+            scoreBoard.addScore(scoreForKill);
         }
         else
         {
-            hitpoints--;
+            scoreBoard.addScore(scoreForHit);
         }
     }
     private void OnCollisionEnter(Collision collision)

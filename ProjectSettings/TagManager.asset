@@ -9,6 +9,7 @@ TagManager:
   - EnemyShip1
   - EnemyShip2
   - Meteor
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

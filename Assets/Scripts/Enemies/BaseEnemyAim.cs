@@ -30,14 +30,24 @@ public class BaseEnemyAim : MonoBehaviour {
 
     virtual protected void FireWeapon()
     {
-        print("Enemy :: PEW PEW");
+        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("EnemyBullet");
+        if(bullet != null)
+        {
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, 180);
+            bullet.SetActive(true);
+        }
+        else
+        {
+            print("bullet not found");
+        }
     }
     /// <summary>
     /// Checks whether or not enemy ship can fire
     /// if it can, it modifies the timer for next shot
     /// </summary>
     /// <returns>True when enemy is able to attack, otherwise returns false</returns>
-    protected bool checkTimer()
+     bool checkTimer()
     {
         if (Time.time - nextShotTime > Mathf.Epsilon)
         {

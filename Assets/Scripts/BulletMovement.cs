@@ -20,7 +20,7 @@ public class BulletMovement : MonoBehaviour {
 	}
     private void OnEnable()
     {
-        bulletBody.AddForce(Vector2.up * bulletSpeed);
+        bulletBody.AddForce(transform.up * bulletSpeed);
     }
     void Update () {
 		
