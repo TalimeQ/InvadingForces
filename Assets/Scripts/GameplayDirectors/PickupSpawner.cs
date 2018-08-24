@@ -14,11 +14,11 @@ public class PickupSpawner : MonoBehaviour , IEnemyListener {
       if(RollForPickupChance(chanceBonus))
         {
             string pickupTag = RollForPickup();
-            SpawnPickup(pickupTag);
+            SpawnPickup(pickupTag,deathPos);
         }
       else if(RollForScorePickupChance(chanceBonus))
         {
-            SpawnPickup("Money");
+            SpawnPickup("Money",deathPos);
         }
     }
 
@@ -72,8 +72,18 @@ public class PickupSpawner : MonoBehaviour , IEnemyListener {
         }
     }
 
-    void SpawnPickup(string tag)
+    void SpawnPickup(string tag,Transform spawnPos)
     {
-
+        GameObject pickup = ObjectPooler.SharedInstance.GetPooledObject(tag);
+        if(pickup != null)
+        {
+            pickup.transform.position = spawnPos.position;
+            pickup.transform.rotation = Quaternion.identity;
+            pickup.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("PickupSpawner :: could not find pickup with tag " + tag + " to spawn.");
+        }
     }
 }
