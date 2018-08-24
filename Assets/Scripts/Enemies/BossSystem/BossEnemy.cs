@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class BossEnemy : Enemy {
 
+    public IBossEnemyListener bossDeathListener;
 	// Use this for initialization
 	void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+    protected override void ProcessEnemyDeath(GameObject other)
+    {
+        
+    }
 }

@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour {
     [Tooltip("Score points awarded for destroying enemy")]
     private int scoreForKill;
 
-    private ScoreBoard scoreBoard;
+    protected ScoreBoard scoreBoard;
    
     private IEnemyListener enemyDeathListener;
 
@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void ProcessEnemyDeath(GameObject other)
+    protected virtual void ProcessEnemyDeath(GameObject other)
     {
         enemyDeathListener.OnEnemyDeath(gameObject.transform,bonusDropChance);
         gameObject.SetActive(false);

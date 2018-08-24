@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class ScoreBoard : MonoBehaviour {
+public class ScoreBoard : MonoBehaviour , IBossListener {
 
     [SerializeField]
     TextMeshProUGUI scoreText;
@@ -16,6 +16,8 @@ public class ScoreBoard : MonoBehaviour {
     public IScoreBoardListener onScoreListener;
 	void Start () {
         scoreText.SetText("Score: 0");
+        BossHandler bossHandler = FindObjectOfType<BossHandler>();
+        bossHandler.scoreBoardListener = this;
         nextBossSpawnsIn = bossSpawnLimit;
 	}
 	
@@ -33,7 +35,17 @@ public class ScoreBoard : MonoBehaviour {
         if (currentScore > nextBossSpawnsIn)
         {
             onScoreListener.OnScoreReached();
-            nextBossSpawnsIn += bossSpawnLimit;
+            nextBossSpawnsIn += 100000000; // z gory nie osiagalny cap zeby wylaczyc bossa i zaoszczedzic na boolu :>
         }
+    }
+
+    public void OnBossEnter(bool wavesTurned)
+    {
+        
+    }
+
+    public void OnBossDeath()
+    {
+        nextBossSpawnsIn += bossSpawnLimit;
     }
 }

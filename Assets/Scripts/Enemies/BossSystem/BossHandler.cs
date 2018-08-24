@@ -15,7 +15,7 @@ using UnityEngine;
 
 
 }
-public class BossHandler : MonoBehaviour , IScoreBoardListener {
+public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListener{
 
 
    [SerializeField]
@@ -27,6 +27,7 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener {
 
     public IBossListener waveBossListener;
     public IBossListener meteorBossListener;
+    public IBossListener scoreBoardListener;
 
 	// Use this for initi alization
 	void Start () {
@@ -117,8 +118,16 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener {
     {
         Vector3 SpawnCoords = new Vector3(0, 0, 0);
         GameObject BossToSpawn = GetBossToSpawn();
+        GetComponent<BossEnemy>().bossDeathListener = this;
+
         Instantiate(BossToSpawn, SpawnCoords, Quaternion.identity,this.transform);
         waveBossListener.OnBossEnter(BossesToSpawn[randomBoss].turnWaves);
-        waveBossListener.OnBossEnter(BossesToSpawn[randomBoss].turnMeteors);
+        meteorBossListener.OnBossEnter(BossesToSpawn[randomBoss].turnMeteors);
+    }
+
+    public void SignalizeDeath()
+    {
+        waveBossListener.OnBossDeath();
+        meteorBossListener.OnBossDeath();
     }
 }

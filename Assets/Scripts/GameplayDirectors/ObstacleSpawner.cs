@@ -8,7 +8,7 @@ using UnityEngine;
  * 
  * 
  */
-public class ObstacleSpawner : MonoBehaviour {
+public class ObstacleSpawner : MonoBehaviour, IBossListener {
 
 
     [Header("Enviromental Obstacle Spawning")]
@@ -25,8 +25,11 @@ public class ObstacleSpawner : MonoBehaviour {
     [SerializeField]
     float minSpeed = 1.0f;
     [SerializeField] float minY = -4, maxY = 2;
+    bool spawnMeteors = true;
 
     void Start() {
+        BossHandler bossHandle = FindObjectOfType<BossHandler>();
+        bossHandle.meteorBossListener = this;
         StartCoroutine(SpawnMeteors());
     }
 
@@ -67,10 +70,11 @@ public class ObstacleSpawner : MonoBehaviour {
         while(true)
         {
 
+            
             Vector3 spawnPosition = prerandomizeSpawnPosition();
             Quaternion spawnRotation = prerandomizeSpawnRotation(spawnPosition);
             GameObject meteor = ObjectPooler.SharedInstance.GetPooledObject("Meteor");
-            if(meteor != null)
+            if(meteor != null && spawnMeteors)
             {
                 meteor.transform.position = spawnPosition;
                 meteor.transform.rotation = spawnRotation;
@@ -85,4 +89,14 @@ public class ObstacleSpawner : MonoBehaviour {
             yield return new WaitForSeconds(spawnDelayInSeconds);
         }
         }
+
+    void IBossListener.OnBossEnter(bool wavesTurned)
+    {
+        spawnMeteors = wavesTurned;
+    }
+
+    void IBossListener.OnBossDeath()
+    {
+        spawnMeteors = true;
+    }
 }
