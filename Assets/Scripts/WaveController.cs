@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveController : MonoBehaviour , IScoreBoardListener {
+public class WaveController : MonoBehaviour , IBossListener{
     [Header("Properties")]
     [Tooltip("Grace period between spawning first wave of enemies")]
     [SerializeField] int preparationTime = 10;
@@ -12,6 +12,8 @@ public class WaveController : MonoBehaviour , IScoreBoardListener {
     private int enemiesToSpawn = 2;
     [SerializeField]
     private float spawnDelay = 0.5f;
+
+    bool spawnWaves = true;
 
     [Header("Spawn Ranges")]
     [SerializeField]
@@ -25,8 +27,10 @@ public class WaveController : MonoBehaviour , IScoreBoardListener {
     // Use this for initialization
     void Start () {
         StartCoroutine(SpawnWaves());
-        ScoreBoard scoreBoard = FindObjectOfType<ScoreBoard>();
-        scoreBoard.onScoreListener = this;
+
+        BossHandler bossHandler = FindObjectOfType<BossHandler>();
+        bossHandler.waveBossListener = this;
+        
 	}
 	
 	// Update is called once per frame
@@ -42,7 +46,7 @@ public class WaveController : MonoBehaviour , IScoreBoardListener {
         {
             for( int i = 0; i < enemiesToSpawn; i++)
             {
-
+                if (spawnWaves) { 
                 // Przerobic bo mozna dojsc do faktu ze rng respi nam tylko 2 na zapelnionym 2kami ekranie. co nie respi nic. Chociaz czy to zle?
                 Vector3 SpawnPosition = new Vector3(Random.Range(minX,maxX), Random.Range(minY,maxY),0);
                 Quaternion spawnRotation = Quaternion.Euler(0,0,-90);
@@ -56,8 +60,8 @@ public class WaveController : MonoBehaviour , IScoreBoardListener {
                     spawnedEnemy.SetActive(true);
 
                 }
-                
-                
+                }
+
 
                 yield return new WaitForSeconds(spawnDelay);
             }
@@ -67,9 +71,15 @@ public class WaveController : MonoBehaviour , IScoreBoardListener {
         }
     }
 
-    public void OnScoreReached()
+
+
+    void IBossListener.OnBossEnter(bool wavesTurned)
     {
-        // boss spawning code here
-        print("score reached!");
+        spawnWaves = wavesTurned;
+    }
+
+    void IBossListener.OnBossDeath()
+    {
+        spawnWaves = true;
     }
 }

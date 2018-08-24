@@ -13,22 +13,15 @@ public class PlayerController : MonoBehaviour {
     [Tooltip("Y speed of the starship")]
     [SerializeField] private float xSpeed = 2.0f;
 
-   
+    PlayerCombat combatComponent;
 
-    [Header("Shooting")]
-    [Tooltip("An bullet gameobject used for basic shoot method")]
-    [SerializeField] GameObject defaultBullet;
-    [Tooltip("Time between cannon reload")]
-    [SerializeField] float reloadTime = 1.0f;
-    private float NextFireTime = 0;
-    public GameObject DefaultBullet {  get{ return defaultBullet; } }
-    bool isLaserActive;
+
 
 
     // Use this for initialization
     void Start()
     {
-
+       combatComponent = GetComponent<PlayerCombat>();
     }
 
     // Update is called once per frame
@@ -40,43 +33,14 @@ public class PlayerController : MonoBehaviour {
     private void ProcessInput()
     {
         ProcessMovement();
-
-        if (Input.GetButton("Fire1")) ProcessShooting();
-        if (Input.GetButton("WeaponSwap")) ProcessWeaponSwap();
-    }
-    private void ProcessWeaponSwap()
-    {
-        print("SWITCHING WEAPON!");
-        isLaserActive = !isLaserActive;
-        
-
-
-        // weapon switching code here.
-    }
-    private void ProcessShooting()
-    {
-      
-  
-            if(NextFireTime <= Time.time)
-        {
-            GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet");
-            if (bullet != null)
-            {
-                NextFireTime = Time.time + reloadTime;
-                if (isLaserActive) print("FIRING LASURS");
-                else print("FIRING PLEB WEAPONS!");
-                bullet.transform.rotation = Quaternion.identity;
-                bullet.transform.position = gameObject.transform.position + Vector3.up;
-                bullet.SetActive(true);
-            }
-            
+        if(combatComponent != null)
+        { 
+        if (Input.GetButton("Fire1")) combatComponent.ProcessShooting();
+        if (Input.GetButton("WeaponSwap")) combatComponent.ProcessWeaponSwap();
         }
-        // TODO :: Zastanowic sie czy strzelanie nie powinno byc osobnym komponentem wywolywanym tylko z playerControllera.
-
-
-
-
     }
+   
+
     private void ProcessMovement()
     {
 
