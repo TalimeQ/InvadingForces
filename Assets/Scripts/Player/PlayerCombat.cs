@@ -28,7 +28,7 @@ public class PlayerCombat : MonoBehaviour {
     private void ProcessShooting()
     {
 
-
+        print("FIRING");
         if (NextFireTime <= Time.time)
         {
             GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet");
@@ -59,5 +59,14 @@ public class PlayerCombat : MonoBehaviour {
             gameObject.SetActive(false);
             // play some cool FX here
         }
+    }
+    private void OnLifePickup(GameObject pickupDoDestroy)
+    {
+        pickupDoDestroy.SetActive(false);
+        print("Player :: hp up");
+    }
+    private void OnLaserPickup(GameObject pickupDoDestroy)
+    {
+        print("Player :: laser picked up");
     }
 }

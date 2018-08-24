@@ -31,6 +31,10 @@ public class BulletMovement : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
+        else if(collision.CompareTag("Meteor"))
+        {
+            gameObject.SetActive(false);
+        }
         
     }
     private void OnCollisionEnter2D(Collision2D collision)

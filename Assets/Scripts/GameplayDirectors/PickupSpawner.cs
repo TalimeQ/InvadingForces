@@ -18,7 +18,7 @@ public class PickupSpawner : MonoBehaviour , IEnemyListener {
         }
       else if(RollForScorePickupChance(chanceBonus))
         {
-            SpawnPickup("Money",deathPos);
+            SpawnPickup("ScorePickup",deathPos);
         }
     }
 
@@ -64,11 +64,11 @@ public class PickupSpawner : MonoBehaviour , IEnemyListener {
         int whatToDrop = Random.Range(1, 4);
         if(whatToDrop >= 3)
         {
-            return "WeaponPickup";
+            return "LaserPickup";
         }
         else
         {
-            return "UtilityPickup";
+            return "HpPickup";
         }
     }
 

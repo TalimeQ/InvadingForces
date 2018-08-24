@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     // TODO : przeniesc to wszystko to skryptu ogarniajacego player shooting, tutaj robi sie za duzy syf.
-    
-    
+
+
     [Header("Movement")]
     [Tooltip("X speed of the starship")]
     [SerializeField] private float ySpeed = 2.0f;
@@ -17,13 +17,11 @@ public class PlayerController : MonoBehaviour {
 
 
 
-
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
-       combatComponent = GetComponent<PlayerCombat>();
+        // zapytac sie kogos inteligetnego czemu tutaj bez tego nie dziala, a w collisions dziala.
+        combatComponent = FindObjectOfType<PlayerCombat>();
     }
-
     // Update is called once per frame
     void Update()
     {

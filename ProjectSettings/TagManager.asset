@@ -10,6 +10,9 @@ TagManager:
   - EnemyShip2
   - Meteor
   - EnemyBullet
+  - HpPickup
+  - LaserPickup
+  - ScorePickup
   layers:
   - Default
   - TransparentFX

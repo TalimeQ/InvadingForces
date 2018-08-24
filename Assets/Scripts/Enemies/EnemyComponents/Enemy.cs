@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour {
                 break;
             case "Player":
                 gameObject.SetActive(false);
-                collision.gameObject.SetActive(false);
                 break;
             case "Bullet":
                 ManageLife(collision.gameObject);
@@ -64,10 +63,11 @@ public class Enemy : MonoBehaviour {
 
     private void ManageLife(GameObject other)
     {
+        Debug.Log("Player :: collision with ENEMY 2"); 
         currentHitpoints--;
         if(currentHitpoints <= 0)
         {
-            ProcessEnemyDeatb(other);
+            ProcessEnemyDeath(other);
         }
         else
         {
@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void ProcessEnemyDeatb(GameObject other)
+    private void ProcessEnemyDeath(GameObject other)
     {
         enemyDeathListener.OnEnemyDeath(gameObject.transform,bonusDropChance);
         gameObject.SetActive(false);

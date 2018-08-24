@@ -53,15 +53,25 @@ public class Meteor : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        
         gameObject.SetActive(false);
-        collision.gameObject.SetActive(false);
+        Debug.LogError("Meteor :: collided with" + collision.gameObject);
+
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+ 
         gameObject.SetActive(false);
-        if(!collision.CompareTag("Bounds"))
-        { collision.gameObject.SetActive(false); }
+        switch(collision.tag)
+        {
+            case "Player":
+                break;
+            case "Bounds":
+                break;
+            default:
+                collision.gameObject.SetActive(false);
+                break;
+        }
     }
 }

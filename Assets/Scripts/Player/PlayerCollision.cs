@@ -13,8 +13,13 @@ public class PlayerCollision : MonoBehaviour {
     int enemyBulletCollisionDamage = 1;
     [SerializeField]
     int meteorCollisionDamage = 2;
-	// Use this for initialization
-
+    ScoreBoard scoreBoardRef;
+    int scorePerScorePickup = 2;
+    // Use this for initialization
+    private void Start()
+    {
+        scoreBoardRef = FindObjectOfType<ScoreBoard>();
+    }
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,6 +36,15 @@ public class PlayerCollision : MonoBehaviour {
                 break;
             case "EnemyShip2":
                 SendMessage("ProcessHit", largeShipCollisionDamage);
+                break;
+            case "HpPickup":
+                SendMessage("OnLifePickup",collision.gameObject);
+                break;
+            case "LaserPickup":
+                SendMessage("OnLaserPickup", collision.gameObject);
+                break;
+            case "ScorePickup":
+                scoreBoardRef.addScore(scorePerScorePickup);
                 break;
             default:
                 Debug.LogWarning("Player Collision :: Unknown Trigger Collision");
