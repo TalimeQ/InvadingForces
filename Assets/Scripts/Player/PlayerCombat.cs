@@ -11,7 +11,7 @@ public class PlayerCombat : MonoBehaviour {
     [SerializeField] float reloadTime = 1.0f;
     private float NextFireTime = 0;
     bool isLaserActive;
-    private int laserAmmo = 0;
+    private int laserAmmo = 30;
 
 
     [Header("Hitpoints and death")]
@@ -58,6 +58,7 @@ public class PlayerCombat : MonoBehaviour {
                     laserProj.transform.position = gameObject.transform.position + Vector3.up;
                     laserProj.SetActive(true);
                 }
+                else Debug.LogWarning("Brak tagu LaserProj");
             }
 
         }
