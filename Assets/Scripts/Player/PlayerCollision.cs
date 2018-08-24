@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour {
 
-    PlayerCombat playerCombat;
-
+    [Header("Damage Values")]
+    [SerializeField]
+    int largeShipCollisionDamage = 3;
+    [SerializeField]
+    int smallShipCollisionDamage = 2;
+    [SerializeField]
+    int enemyBulletCollisionDamage = 1;
+    [SerializeField]
+    int meteorCollisionDamage = 2;
 	// Use this for initialization
-	void Start () {
-        playerCombat = GetComponent<PlayerCombat>();
-	}
 
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,17 +21,16 @@ public class PlayerCollision : MonoBehaviour {
         switch( collision.tag)
         {
             case "Meteor":
-                print("Player :: meteor triggered");
+                SendMessage("ProcessHit", meteorCollisionDamage);
                 break;
             case "EnemyBullet":
-                print("Player :: enemy bullet triggered");
-                SendMessage("ProcessHit", 1);
+                SendMessage("ProcessHit", enemyBulletCollisionDamage);
                 break;
             case "EnemyShip1":
-                print("Player :: enemy ship triggered");
+                SendMessage("ProcessHit", smallShipCollisionDamage);
                 break;
             case "EnemyShip2":
-                print("Player :: enemy ship 2 triggered");
+                SendMessage("ProcessHit", largeShipCollisionDamage);
                 break;
             default:
                 Debug.LogWarning("Player Collision :: Unknown Trigger Collision");

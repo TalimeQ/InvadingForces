@@ -55,8 +55,9 @@ public class PlayerCombat : MonoBehaviour {
         print("Player :: I've been hit for " + damage + "damage");
         hitPoints = hitPoints - damage;
         if(hitPoints <= 0)
-        {   
-
+        {
+            gameObject.SetActive(false);
+            // play some cool FX here
         }
     }
 }
