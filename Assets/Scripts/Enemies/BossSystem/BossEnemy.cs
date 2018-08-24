@@ -14,8 +14,34 @@ public class BossEnemy : Enemy {
 	void Update () {
 		
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+
+            case "Meteor":
+                ManageLife(collision.gameObject, 1);
+                break;
+            case "Player":
+                ManageLife(collision.gameObject, 1);
+                break;
+            case "Bullet":
+                ManageLife(collision.gameObject, 1);
+                break;
+            case "LaserProj":
+                ManageLife(collision.gameObject, 3);
+                break;
+            default:
+                break;
+
+        }
+    }
     protected override void ProcessEnemyDeath(GameObject other)
     {
-        
+        bossDeathListener.SignalizeDeath();
+        gameObject.SetActive(false);
+        other.SetActive(false);
+        scoreBoard.addScore(scoreForKill);
     }
 }

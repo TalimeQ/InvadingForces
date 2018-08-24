@@ -28,6 +28,9 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
     public IBossListener waveBossListener;
     public IBossListener meteorBossListener;
     public IBossListener scoreBoardListener;
+    
+    // TODO ZABEZPIECZYC TA FUNKCJE PRZED NULLAMI W TABLICY
+
 
 	// Use this for initi alization
 	void Start () {

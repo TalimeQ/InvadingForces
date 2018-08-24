@@ -15,11 +15,11 @@ public class Enemy : MonoBehaviour {
 
     [SerializeField]
     [Tooltip("Score points earned for hitting the enemy")]
-    private int scoreForHit;
+    protected int scoreForHit;
 
     [SerializeField]
     [Tooltip("Score points awarded for destroying enemy")]
-    private int scoreForKill;
+    protected int scoreForKill;
 
     protected ScoreBoard scoreBoard;
    
@@ -53,7 +53,10 @@ public class Enemy : MonoBehaviour {
                 gameObject.SetActive(false);
                 break;
             case "Bullet":
-                ManageLife(collision.gameObject);
+                ManageLife(collision.gameObject, 1);
+                break;
+            case "LaserProj":
+                ManageLife(collision.gameObject, 2);
                 break;
             default:
                 break;
@@ -61,10 +64,10 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void ManageLife(GameObject other)
+    protected void ManageLife(GameObject other, int deductedHP)
     {
         Debug.Log("Player :: collision with ENEMY 2"); 
-        currentHitpoints--;
+        currentHitpoints -= deductedHP;
         if(currentHitpoints <= 0)
         {
             ProcessEnemyDeath(other);

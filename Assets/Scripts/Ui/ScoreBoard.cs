@@ -46,6 +46,6 @@ public class ScoreBoard : MonoBehaviour , IBossListener {
 
     public void OnBossDeath()
     {
-        nextBossSpawnsIn += bossSpawnLimit;
+        nextBossSpawnsIn = currentScore + bossSpawnLimit;
     }
 }
