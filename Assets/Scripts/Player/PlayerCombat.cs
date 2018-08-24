@@ -11,16 +11,21 @@ public class PlayerCombat : MonoBehaviour {
     [SerializeField] float reloadTime = 1.0f;
     private float NextFireTime = 0;
     bool isLaserActive;
+    private int laserAmmo = 0;
+
 
     [Header("Hitpoints and death")]
-    [SerializeField]
     int hitPoints = 3;
-
+    [SerializeField]
+    int hitPointCap = 3;
+    private void Start()
+    {
+        hitPoints = hitPointCap;
+    }
     private void ProcessWeaponSwap()
     {
-        print("SWITCHING WEAPON!");
         isLaserActive = !isLaserActive;
-
+        print("Laser Active!");
 
 
         // weapon switching code here.
@@ -31,22 +36,33 @@ public class PlayerCombat : MonoBehaviour {
         print("FIRING");
         if (NextFireTime <= Time.time)
         {
-            GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet");
-            if (bullet != null)
+            if (!isLaserActive)
+            { 
+                GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet");
+                if (bullet != null)
+                {
+                    NextFireTime = Time.time + reloadTime;
+                    bullet.transform.rotation = Quaternion.identity;
+                    bullet.transform.position = gameObject.transform.position + Vector3.up;
+                    bullet.SetActive(true);
+                }
+            }
+            else if(laserAmmo > 0)
             {
-                NextFireTime = Time.time + reloadTime;
-                if (isLaserActive) print("FIRING LASURS");
-                else print("FIRING PLEB WEAPONS!");
-                bullet.transform.rotation = Quaternion.identity;
-                bullet.transform.position = gameObject.transform.position + Vector3.up;
-                bullet.SetActive(true);
+                laserAmmo--;
+                GameObject laserProj = ObjectPooler.SharedInstance.GetPooledObject("LaserProj");
+                if (laserProj)
+                {
+                    NextFireTime = Time.time + reloadTime / 5;
+                    laserProj.transform.rotation = Quaternion.identity;
+                    laserProj.transform.position = gameObject.transform.position + Vector3.up;
+                    laserProj.SetActive(true);
+                }
             }
 
         }
-        // TODO :: Zastanowic sie czy strzelanie nie powinno byc osobnym komponentem wywolywanym tylko z playerControllera.
-
-
-
+        
+ 
 
     }
 
@@ -63,10 +79,16 @@ public class PlayerCombat : MonoBehaviour {
     private void OnLifePickup(GameObject pickupDoDestroy)
     {
         pickupDoDestroy.SetActive(false);
-        print("Player :: hp up");
+        if(hitPoints <= hitPointCap)
+        {
+            print("Player :: hp up");
+            hitPoints++;
+        }
+        
     }
     private void OnLaserPickup(GameObject pickupDoDestroy)
     {
         print("Player :: laser picked up");
+        laserAmmo += 30;
     }
 }

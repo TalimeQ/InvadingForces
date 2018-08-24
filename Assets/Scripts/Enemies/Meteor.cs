@@ -62,15 +62,24 @@ public class Meteor : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
  
-        gameObject.SetActive(false);
+       
         switch(collision.tag)
         {
             case "Player":
+                gameObject.SetActive(false);
                 break;
             case "Bounds":
+                gameObject.SetActive(false);
+                break;
+            case "HpPickup":
+                break;
+            case "LaserPickup":
+                break;
+            case "ScorePickup":
                 break;
             default:
                 collision.gameObject.SetActive(false);
+                gameObject.SetActive(false);
                 break;
         }
     }
