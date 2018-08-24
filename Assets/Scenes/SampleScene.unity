@@ -254,6 +254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27f8a744a5033a4ea1593f3fc954cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  largeShipCollisionDamage: 3
+  smallShipCollisionDamage: 2
+  enemyBulletCollisionDamage: 1
+  meteorCollisionDamage: 2
 --- !u!1001 &154561325
 Prefab:
   m_ObjectHideFlags: 0
@@ -405,6 +409,7 @@ GameObject:
   - component: {fileID: 387856450}
   - component: {fileID: 387856452}
   - component: {fileID: 387856453}
+  - component: {fileID: 387856454}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -492,6 +497,19 @@ MonoBehaviour:
   minSpeed: 1
   minY: -2
   maxY: 3
+--- !u!114 &387856454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 387856449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c927f3b2159836246bcb317202527568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BasePickupChance: 15
+  ScorePickupChance: 35
 --- !u!1001 &430713144
 Prefab:
   m_ObjectHideFlags: 0

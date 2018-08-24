@@ -16,7 +16,7 @@ public class PlayerCombat : MonoBehaviour {
     [SerializeField]
     int hitPoints = 3;
 
-    public void ProcessWeaponSwap()
+    private void ProcessWeaponSwap()
     {
         print("SWITCHING WEAPON!");
         isLaserActive = !isLaserActive;
@@ -25,7 +25,7 @@ public class PlayerCombat : MonoBehaviour {
 
         // weapon switching code here.
     }
-    public void ProcessShooting()
+    private void ProcessShooting()
     {
 
 

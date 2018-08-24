@@ -7,9 +7,11 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     [Tooltip("Number of hits that enemy takes before being destroyed.")]
     private int hitPoints = 5;
-
     private int currentHitpoints = 5;
 
+    [SerializeField]
+    [Tooltip(" Adds +% to pickup drop chance")]
+    int bonusDropChance = 0;
 
     [SerializeField]
     [Tooltip("Score points earned for hitting the enemy")]
@@ -20,9 +22,13 @@ public class Enemy : MonoBehaviour {
     private int scoreForKill;
 
     private ScoreBoard scoreBoard;
+   
+    private IEnemyListener enemyDeathListener;
 
     void Start () {
        scoreBoard = FindObjectOfType<ScoreBoard>();
+        PickupSpawner pickupSpawner = FindObjectOfType<PickupSpawner>();
+        enemyDeathListener = pickupSpawner;
 		
 	}
 
@@ -30,6 +36,7 @@ public class Enemy : MonoBehaviour {
     private void OnEnable()
     {
         currentHitpoints = hitPoints;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,17 +67,25 @@ public class Enemy : MonoBehaviour {
         currentHitpoints--;
         if(currentHitpoints <= 0)
         {
-            gameObject.SetActive(false);
-            other.SetActive(false);
-            scoreBoard.addScore(scoreForKill);
+            ProcessEnemyDeatb(other);
         }
         else
         {
             scoreBoard.addScore(scoreForHit);
         }
     }
+
+    private void ProcessEnemyDeatb(GameObject other)
+    {
+        enemyDeathListener.OnEnemyDeath(gameObject.transform,bonusDropChance);
+        gameObject.SetActive(false);
+        other.SetActive(false);
+        scoreBoard.addScore(scoreForKill);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         print("ship collided");
     }
+
 }

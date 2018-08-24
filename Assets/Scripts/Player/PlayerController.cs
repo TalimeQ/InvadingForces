@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour {
         ProcessMovement();
         if(combatComponent != null)
         { 
-        if (Input.GetButton("Fire1")) combatComponent.ProcessShooting();
-        if (Input.GetButton("WeaponSwap")) combatComponent.ProcessWeaponSwap();
+        if (Input.GetButton("Fire1")) SendMessage("ProcessShooting");
+        if (Input.GetButton("WeaponSwap")) SendMessage("ProcessWeaponSwap");
         }
     }
    

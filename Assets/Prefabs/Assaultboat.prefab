@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b395477b6640624686e5ef848c0c2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadBetweenAttacks: 1.2
+  reloadBetweenAttacks: 3
   enemyProjectile: {fileID: 0}
 --- !u!114 &114594455201261024
 MonoBehaviour:
@@ -114,7 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3880f7eeb3378a84693ce080610811e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 2
+  hitPoints: 1
+  bonusDropChance: 0
   scoreForHit: 0
   scoreForKill: 2
 --- !u!114 &114949543980186760
