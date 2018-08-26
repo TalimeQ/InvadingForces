@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 [System.Serializable]
- class BossSpawnParameters
+ public struct BossSpawnParameters
 {
     [Tooltip("Prefab of object to spawn")]
     public GameObject objectToSpawn;
@@ -19,10 +19,10 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
 
 
    [SerializeField]
-    private List<BossSpawnParameters> BossesToSpawn;
+    private List<BossSpawnParameters> BossesToSpawn = new List<BossSpawnParameters>();
     private int tableLenght;
     // array nie jest dynamiczny odpada, lista niby guczi ale srednio sie z niej wyciaga okreslone elementy, slownik wyjdzie spoko
-    Dictionary<int, bool> wasNotUsed;
+    Dictionary<int, bool> wasNotUsed = new Dictionary<int, bool>();
     private int randomBoss;
 
     public IBossListener waveBossListener;
@@ -38,32 +38,30 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
         ScoreBoard scoreBoard = FindObjectOfType<ScoreBoard>();
         scoreBoard.onScoreListener = this;
         // Jesli tablica jest pusta, to w sumie skrypt nie ma co robic
-        try { 
-        tableLenght = BossesToSpawn.Count;
+  
+            tableLenght = BossesToSpawn.Count;
+       
             // inicjalizacja slownika
             for (int i = 0; i < tableLenght; i++)
             {
             wasNotUsed.Add(i, true);
             }
-        }
-        catch(NullReferenceException)
-        {
-            Debug.LogWarning("Boss spawner :: nie mozesz respic bossow jesli nic nie dodasz do tabeli");
-            Destroy(this);
-        }
-        
+
+
 
     }
 	
 
-    public GameObject GetBossToSpawn()
+    public BossSpawnParameters GetBossToSpawn()
     {
         randomBoss = UnityEngine.Random.Range(0,tableLenght);
+     
         while(!CheckIfWasSpawned(randomBoss))
         {
             randomBoss = UnityEngine.Random.Range(0, tableLenght);
         }
-        return BossesToSpawn[randomBoss].objectToSpawn;
+        print("Wylosowano bossa " + BossesToSpawn[randomBoss].objectToSpawn.name + " Nastepny index " );
+        return BossesToSpawn[randomBoss] ;
     }
     private bool CheckIfWasSpawned(int key)
     {
@@ -71,18 +69,22 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
         {
             ResetBosses();
         }
-
+ 
         if (wasNotUsed[key])
         {
             wasNotUsed[key] = false;
             return false;
         }
-        else
-        {
-            return true;
+            else
+            {
+                return true;
+            }
         }
 
-    }
+   
+       
+
+    
 
     private void ResetBosses()
     {
@@ -98,7 +100,10 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
         int numerator = 0;
         for (int i = 0; i < tableLenght; i++)
         {
-            if (wasNotUsed[i] == false) numerator++;
+
+                if (wasNotUsed[i] == false) numerator++;
+
+                return false;
 
         }
         if (numerator == BossesToSpawn.Count)
@@ -120,12 +125,17 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
     private void SpawnBoss()
     {
         Vector3 SpawnCoords = new Vector3(0, 0, 0);
-        GameObject BossToSpawn = GetBossToSpawn();
-        GetComponent<BossEnemy>().bossDeathListener = this;
+        BossSpawnParameters BossToSpawnParams = GetBossToSpawn();
+        GameObject BossToSpawn = BossToSpawnParams.objectToSpawn;
+        print(BossToSpawnParams.objectToSpawn);
 
-        Instantiate(BossToSpawn, SpawnCoords, Quaternion.identity,this.transform);
-        waveBossListener.OnBossEnter(BossesToSpawn[randomBoss].turnWaves);
-        meteorBossListener.OnBossEnter(BossesToSpawn[randomBoss].turnMeteors);
+
+        GameObject SpawnedBoss = Instantiate(BossToSpawn, SpawnCoords, Quaternion.Euler(0,0,-90),this.transform);
+
+        SpawnedBoss.GetComponent<BossEnemy>().bossDeathListener = this;
+
+        waveBossListener.OnBossEnter(BossToSpawnParams.turnWaves);
+        meteorBossListener.OnBossEnter(BossToSpawnParams.turnMeteors);
     }
 
     public void SignalizeDeath()

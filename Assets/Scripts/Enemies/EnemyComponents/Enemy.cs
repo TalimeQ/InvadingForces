@@ -41,8 +41,11 @@ public class Enemy : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-    switch (collision.tag)
+        Debug.Log(gameObject.name + " Collided from enemy");
+        switch (collision.tag)
         {
+           
+
             case "Bounds":
                 gameObject.SetActive(false);
                 break;

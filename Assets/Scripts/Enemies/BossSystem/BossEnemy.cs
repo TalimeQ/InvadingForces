@@ -7,7 +7,7 @@ public class BossEnemy : Enemy {
     public IBossEnemyListener bossDeathListener;
 	// Use this for initialization
 	void Start () {
-        
+        scoreBoard = FindObjectOfType<ScoreBoard>();
 	}
 	
 	// Update is called once per frame
@@ -17,6 +17,7 @@ public class BossEnemy : Enemy {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(gameObject.name + " Collided from boss");
         switch (collision.tag)
         {
 

@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadTime: 1
-  hitPoints: 3
+  hitPointCap: 3
 --- !u!114 &50302528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +489,10 @@ MonoBehaviour:
     shouldExpand: 0
   - amountToPool: 3
     objectoPool: {fileID: 1219100304083336, guid: b2125a4ec5dbeb5488b08b36997bd59d,
+      type: 2}
+    shouldExpand: 0
+  - amountToPool: 10
+    objectoPool: {fileID: 1233065175771992, guid: 0584fcc350955a54c99d7293478c8d0e,
       type: 2}
     shouldExpand: 0
 --- !u!114 &387856453
