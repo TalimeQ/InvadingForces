@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714110752572918}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -10.737135, y: -7.5697107, z: 0}
+  m_LocalPosition: {x: -13.905437, y: 1.2651831, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 12}
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 5
   bonusDropChance: 0
-  scoreForHit: 0
-  scoreForKill: 0
+  scoreForHit: 10
+  scoreForKill: 25
 --- !u!114 &114556207139860262
 MonoBehaviour:
   m_ObjectHideFlags: 1

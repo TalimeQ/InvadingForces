@@ -69,7 +69,6 @@ public class Enemy : MonoBehaviour {
 
     protected void ManageLife(GameObject other, int deductedHP)
     {
-        Debug.Log("Player :: collision with ENEMY 2"); 
         currentHitpoints -= deductedHP;
         if(currentHitpoints <= 0)
         {

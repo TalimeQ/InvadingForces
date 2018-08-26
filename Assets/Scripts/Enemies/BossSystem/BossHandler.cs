@@ -127,12 +127,11 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
         Vector3 SpawnCoords = new Vector3(0, 0, 0);
         BossSpawnParameters BossToSpawnParams = GetBossToSpawn();
         GameObject BossToSpawn = BossToSpawnParams.objectToSpawn;
-        print(BossToSpawnParams.objectToSpawn);
 
 
         GameObject SpawnedBoss = Instantiate(BossToSpawn, SpawnCoords, Quaternion.Euler(0,0,-90),this.transform);
 
-        SpawnedBoss.GetComponent<BossEnemy>().bossDeathListener = this;
+      
 
         waveBossListener.OnBossEnter(BossToSpawnParams.turnWaves);
         meteorBossListener.OnBossEnter(BossToSpawnParams.turnMeteors);
@@ -142,5 +141,6 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
     {
         waveBossListener.OnBossDeath();
         meteorBossListener.OnBossDeath();
+        scoreBoardListener.OnBossDeath();
     }
 }

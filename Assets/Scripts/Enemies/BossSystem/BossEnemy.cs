@@ -8,6 +8,8 @@ public class BossEnemy : Enemy {
 	// Use this for initialization
 	void Start () {
         scoreBoard = FindObjectOfType<ScoreBoard>();
+        BossHandler bossHandler = FindObjectOfType<BossHandler>();
+        bossDeathListener = bossHandler;
 	}
 	
 	// Update is called once per frame
@@ -41,8 +43,10 @@ public class BossEnemy : Enemy {
     protected override void ProcessEnemyDeath(GameObject other)
     {
         bossDeathListener.SignalizeDeath();
-        gameObject.SetActive(false);
-        other.SetActive(false);
         scoreBoard.addScore(scoreForKill);
+        other.SetActive(false);
+        Destroy(gameObject);
+        
+        
     }
 }
