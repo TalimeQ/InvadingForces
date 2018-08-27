@@ -18,17 +18,27 @@ public class PlayerCombat : MonoBehaviour {
     int hitPoints = 3;
     [SerializeField]
     int hitPointCap = 3;
+
+    [Header("Effects")]
+    [SerializeField]
+    AudioSource playerAudioSource;
+    [SerializeField]
+    GameObject deathEffect;
+    [SerializeField]
+    AudioClip laserAudio;
+    [SerializeField]
+    AudioClip standShotAudio;
+
     private void Start()
     {
         hitPoints = hitPointCap;
+        playerAudioSource = gameObject.GetComponent<AudioSource>();
     }
     private void ProcessWeaponSwap()
     {
         isLaserActive = !isLaserActive;
         print("Laser Active!");
 
-
-        // weapon switching code here.
     }
     private void ProcessShooting()
     {
@@ -41,6 +51,7 @@ public class PlayerCombat : MonoBehaviour {
                 GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Bullet");
                 if (bullet != null)
                 {
+                    PlayAudioClip(standShotAudio);
                     NextFireTime = Time.time + reloadTime;
                     bullet.transform.rotation = Quaternion.identity;
                     bullet.transform.position = gameObject.transform.position + Vector3.up;
@@ -53,6 +64,7 @@ public class PlayerCombat : MonoBehaviour {
                 GameObject laserProj = ObjectPooler.SharedInstance.GetPooledObject("LaserProj");
                 if (laserProj)
                 {
+                    PlayAudioClip(laserAudio);
                     NextFireTime = Time.time + reloadTime / 5;
                     laserProj.transform.rotation = Quaternion.identity;
                     laserProj.transform.position = gameObject.transform.position + Vector3.up;
@@ -67,16 +79,40 @@ public class PlayerCombat : MonoBehaviour {
 
     }
 
+    private void PlayAudioClip(AudioClip audioToPlay)
+    {
+        if(!playerAudioSource)
+        {
+            Debug.LogWarning("Skrypt combatu gracza probowal zagrac dzwiek na: " + gameObject.name + ". Niestety obiektowi bramuje audio source. Napraw to prosze ;)");
+            return;
+        }
+        if(!audioToPlay)
+        {
+            Debug.LogWarning(" Skrypt combatu gracza probowal zagrac dzwiek na: " + gameObject.name + ".Niestety obiektowi brakuje jednego z audio clipow.Napraw to prosze ;)");
+            return;
+        }
+        playerAudioSource.PlayOneShot(audioToPlay);
+    }
+
     private void ProcessHit(int damage)
     {
         print("Player :: I've been hit for " + damage + "damage");
         hitPoints = hitPoints - damage;
         if(hitPoints <= 0)
         {
+            GameObject deathFX = ObjectPooler.SharedInstance.GetPooledObject(deathEffect.tag);
+            if(deathFX)
+            {
+                deathFX.transform.position = transform.position;
+                deathFX.transform.rotation = transform.rotation;
+                deathFX.SetActive(true);
+            }
             gameObject.SetActive(false);
             // play some cool FX here
         }
     }
+
+
     private void OnLifePickup(GameObject pickupDoDestroy)
     {
         pickupDoDestroy.SetActive(false);

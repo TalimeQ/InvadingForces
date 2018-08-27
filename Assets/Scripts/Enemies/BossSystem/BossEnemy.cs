@@ -40,11 +40,11 @@ public class BossEnemy : Enemy {
 
         }
     }
-    protected override void ProcessEnemyDeath(GameObject other)
+    protected override void ProcessEnemyDeath()
     {
         bossDeathListener.SignalizeDeath();
         scoreBoard.addScore(scoreForKill);
-        other.SetActive(false);
+        
         Destroy(gameObject);
         
         

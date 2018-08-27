@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour {
     protected int scoreForKill;
 
     protected ScoreBoard scoreBoard;
+    [SerializeField][Tooltip("Particle effect used on enemy death")]
+    protected GameObject deathFX;
    
     private IEnemyListener enemyDeathListener;
 
@@ -41,7 +43,6 @@ public class Enemy : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(gameObject.name + " Collided from enemy");
         switch (collision.tag)
         {
            
@@ -50,10 +51,10 @@ public class Enemy : MonoBehaviour {
                 gameObject.SetActive(false);
                 break;
             case "Meteor":
-                gameObject.SetActive(false);
+                ProcessEnemyDeath();
                 break;
             case "Player":
-                gameObject.SetActive(false);
+                ProcessEnemyDeath();
                 break;
             case "Bullet":
                 ManageLife(collision.gameObject, 1);
@@ -70,9 +71,10 @@ public class Enemy : MonoBehaviour {
     protected void ManageLife(GameObject other, int deductedHP)
     {
         currentHitpoints -= deductedHP;
+        other.SetActive(false);
         if(currentHitpoints <= 0)
         {
-            ProcessEnemyDeath(other);
+            ProcessEnemyDeath();
         }
         else
         {
@@ -80,17 +82,25 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    protected virtual void ProcessEnemyDeath(GameObject other)
+    protected virtual void ProcessEnemyDeath()
     {
         enemyDeathListener.OnEnemyDeath(gameObject.transform,bonusDropChance);
+       
         gameObject.SetActive(false);
-        other.SetActive(false);
+        GameObject deathEffect = ObjectPooler.SharedInstance.GetPooledObject(deathFX.tag);
+        if(deathEffect)
+        {
+            deathEffect.transform.position = this.transform.position;
+            deathEffect.transform.rotation = Quaternion.identity;
+            deathEffect.SetActive(true);
+        }
+        
         scoreBoard.addScore(scoreForKill);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        print("ship collided");
+        
     }
 
 }
