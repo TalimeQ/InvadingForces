@@ -15,6 +15,7 @@ TagManager:
   - LaserPickup
   - ScorePickup
   - EnemyDeathFX
+  - MeteorFx
   layers:
   - Default
   - TransparentFX

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DeathFX : MonoBehaviour {
 
-  [SerializeField] private AudioSource deathFxSound;
-    [SerializeField] private AudioClip deathAudio;
+  [SerializeField] private AudioSource deathAudioSource;
+    [SerializeField] private AudioClip deathAudioClip;
     [SerializeField] ParticleSystem deathhFxParticle;
 
     // Use this for initialization
@@ -16,7 +16,7 @@ public class DeathFX : MonoBehaviour {
     }
     void  OnDeath()
     {
-        deathFxSound.PlayOneShot(deathAudio);
+        deathAudioSource.PlayOneShot(deathAudioClip);
         deathhFxParticle.Play();
 
         Invoke("DisableSystem", 0.5f);

@@ -13,6 +13,8 @@ public class Meteor : MonoBehaviour {
     float floatingSpeed = 2.0f;
     public float FloatingSpeed { set { floatingSpeed = value; } }
     private Rigidbody2D meteorBody;
+    [SerializeField]
+    private GameObject DeathFX;
 
     void OnEnable()
     {
@@ -66,7 +68,8 @@ public class Meteor : MonoBehaviour {
         switch(collision.tag)
         {
             case "Player":
-                gameObject.SetActive(false);
+               
+                MeteorDestruction();
                 break;
             case "Bounds":
                 gameObject.SetActive(false);
@@ -77,10 +80,29 @@ public class Meteor : MonoBehaviour {
                 break;
             case "ScorePickup":
                 break;
+            case "Meteor":
+                break;
             default:
                 collision.gameObject.SetActive(false);
-                gameObject.SetActive(false);
+                
+                MeteorDestruction();
                 break;
         }
+    }
+    void MeteorDestruction()
+    {
+      GameObject meteorFX =  ObjectPooler.SharedInstance.GetPooledObject(DeathFX.tag);
+        if(meteorFX)
+        {
+            meteorFX.transform.position = transform.position;
+            meteorFX.transform.rotation = Quaternion.identity;
+            meteorFX.SetActive(true);
+            Debug.Log("SPAWNED METEOR");
+        }
+        else
+        {
+            Debug.Log("DUPA");
+        }
+        gameObject.SetActive(false);
     }
 }

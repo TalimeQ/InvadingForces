@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1781844847165770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.09, y: -0.26, z: 0}
+  m_LocalPosition: {x: -2.7160215, y: -15.370187, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingSpeed: 2
+  DeathFX: {fileID: 1063303445798512, guid: dbd7dab975d7fe547811e2f69d28a619, type: 2}
 --- !u!212 &212630051426926858
 SpriteRenderer:
   m_ObjectHideFlags: 1
