@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadTime: 1
-  hitPointCap: 1
+  hitPointCap: 5
   playerAudioSource: {fileID: 0}
   deathEffect: {fileID: 1778038573275900, guid: f5b83bd2885499d4fa298be9e9449a7e,
     type: 2}

@@ -29,15 +29,20 @@ public class PlayerCombat : MonoBehaviour {
     [SerializeField]
     AudioClip standShotAudio;
 
+    IWeaponSwapListener weaponSwapListener;
+    ILifeListener playerLifeListener;
     private void Start()
     {
         hitPoints = hitPointCap;
         playerAudioSource = gameObject.GetComponent<AudioSource>();
+        weaponSwapListener = FindObjectOfType<WeaponSwapper>();
+        playerLifeListener = FindObjectOfType<LifeDisplayer>();
     }
     private void ProcessWeaponSwap()
     {
         isLaserActive = !isLaserActive;
-        print("Laser Active!");
+        weaponSwapListener.OnWeaponSwap(isLaserActive);
+        
 
     }
     private void ProcessShooting()
@@ -98,7 +103,8 @@ public class PlayerCombat : MonoBehaviour {
     {
         print("Player :: I've been hit for " + damage + "damage");
         hitPoints = hitPoints - damage;
-        if(hitPoints <= 0)
+        playerLifeListener.OnLifeLost(damage);
+        if (hitPoints <= 0) 
         {
             GameObject deathFX = ObjectPooler.SharedInstance.GetPooledObject(deathEffect.tag);
             if(deathFX)
@@ -120,6 +126,7 @@ public class PlayerCombat : MonoBehaviour {
         {
             print("Player :: hp up");
             hitPoints++;
+            playerLifeListener.OnLifeGained();
         }
         
     }
