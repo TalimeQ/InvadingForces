@@ -51,10 +51,10 @@ public class Enemy : MonoBehaviour {
                 gameObject.SetActive(false);
                 break;
             case "Meteor":
-                ProcessEnemyDeath();
+                ProcessEnemyDeath("Meteor");
                 break;
             case "Player":
-                ProcessEnemyDeath();
+                ProcessEnemyDeath("Player");
                 break;
             case "Bullet":
                 ManageLife(collision.gameObject, 1);
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour {
         other.SetActive(false);
         if(currentHitpoints <= 0)
         {
-            ProcessEnemyDeath();
+            ProcessEnemyDeath("");
         }
         else
         {
@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    protected virtual void ProcessEnemyDeath()
+    protected virtual void ProcessEnemyDeath(string tag)
     {
         enemyDeathListener.OnEnemyDeath(gameObject.transform,bonusDropChance);
        
@@ -94,8 +94,11 @@ public class Enemy : MonoBehaviour {
             deathEffect.transform.rotation = Quaternion.identity;
             deathEffect.SetActive(true);
         }
+        if(tag == "")
+        {
+            scoreBoard.addScore(scoreForKill);
+        }
         
-        scoreBoard.addScore(scoreForKill);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -40,7 +40,7 @@ public class BossEnemy : Enemy {
 
         }
     }
-    protected override void ProcessEnemyDeath()
+    protected override void ProcessEnemyDeath(string tag)
     {
         bossDeathListener.SignalizeDeath();
         scoreBoard.addScore(scoreForKill);
