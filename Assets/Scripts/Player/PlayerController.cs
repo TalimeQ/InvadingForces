@@ -14,9 +14,15 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float xSpeed = 2.0f;
 
 
+    bool processInput = true;
 
-
-
+    /// <summary>
+    /// Toggles wheter or not player can consume input.
+    /// </summary>
+    public void toggleInputConsumption(bool consumeInput)
+    {
+        processInput = consumeInput;
+    }
     private void Start()
     {
         // zapytac sie kogos inteligetnego czemu tutaj bez tego nie dziala, a w collisions dziala.
@@ -25,6 +31,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (!processInput) return;
         ProcessInput();
     }
 
@@ -33,7 +40,8 @@ public class PlayerController : MonoBehaviour {
         ProcessMovement();
 
         if (Input.GetButton("Fire1")) SendMessage("ProcessShooting");
-        if (Input.GetButton("WeaponSwap")) SendMessage("ProcessWeaponSwap");
+        if (Input.GetButtonDown("WeaponSwap")) SendMessage("ProcessWeaponSwap");
+        
 
     }
    
