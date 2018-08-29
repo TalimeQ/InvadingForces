@@ -15,12 +15,14 @@ public class LifeDisplayer : MonoBehaviour, ILifeListener {
 
     void ILifeListener.OnLifeGained()
     {
+        if (hp >= 5) return;
         AddHpOnBar();
         
     }
 
     void ILifeListener.OnLifeLost(int hpLost)
     {
+
         DeductHpOnBar(hpLost);
     }
 
@@ -35,6 +37,7 @@ public class LifeDisplayer : MonoBehaviour, ILifeListener {
     void DeductHpOnBar(int hpLost)
     {
         hp = hp - hpLost;
+        if (hp <= 0) hp = 0;
         for (int i = hp; i < 5; i++)
         {
             hpBars[i].sprite = lifeLostSprite;

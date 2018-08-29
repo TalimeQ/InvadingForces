@@ -7,7 +7,7 @@ public class PauseController : MonoBehaviour {
 
     [SerializeField] PauseMenu menuPauzy;
 
-    bool isPaused = false;
+
 
     private void Start()
     {
@@ -33,13 +33,12 @@ public class PauseController : MonoBehaviour {
         if(menuPauzy.gameObject.activeInHierarchy == true)
         {
             menuPauzy.UnPause();
-            isPaused = false;
-           
+
         }
         else
         {
             menuPauzy.Pause();
-            isPaused = true;
+            
             
         }
     }

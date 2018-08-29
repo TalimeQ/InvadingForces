@@ -31,12 +31,15 @@ public class PlayerCombat : MonoBehaviour {
 
     IWeaponSwapListener weaponSwapListener;
     ILifeListener playerLifeListener;
+    IPlayerDeathListener playerDeathListener;
+
     private void Start()
     {
         hitPoints = hitPointCap;
         playerAudioSource = gameObject.GetComponent<AudioSource>();
         weaponSwapListener = FindObjectOfType<WeaponSwapper>();
         playerLifeListener = FindObjectOfType<LifeDisplayer>();
+        playerDeathListener = FindObjectOfType<GameFinalizer>();
     }
     private void ProcessWeaponSwap()
     {
@@ -114,6 +117,7 @@ public class PlayerCombat : MonoBehaviour {
                 deathFX.SetActive(true);
             }
             gameObject.SetActive(false);
+            playerDeathListener.OnPlayerDeath();
             // play some cool FX here
         }
     }
