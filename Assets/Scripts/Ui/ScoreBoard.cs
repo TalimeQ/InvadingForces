@@ -7,6 +7,7 @@ public class ScoreBoard : MonoBehaviour, IBossListener {
     [SerializeField]
     TextMeshProUGUI scoreText;
     int currentScore = 0;
+    public int CurrentScore { get { return currentScore; } }
     [SerializeField]
     [Tooltip("Each time this score multiplier is reached, spawn a boss")]
     int bossSpawnLimit = 10;
@@ -41,7 +42,7 @@ public class ScoreBoard : MonoBehaviour, IBossListener {
 
     public void OnBossEnter(bool wavesTurned)
     {
-
+        // nie interesuje nas, nie zmieniamy nic w scorebordzie przy pojawieniu sie bossa.
     }
 
     public void OnBossDeath()

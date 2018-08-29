@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
 
+    [SerializeField] HighScores highScoresDisplay;
 
     public void OnStartClicked()
     {
@@ -14,5 +15,10 @@ public class MenuManager : MonoBehaviour {
     {
         Debug.Log("Quit Clicked!");
         Application.Quit();
+    }
+    public void OnHighScoresClicked()
+    {
+        this.gameObject.SetActive(false);
+        highScoresDisplay.gameObject.SetActive(true);
     }
 }

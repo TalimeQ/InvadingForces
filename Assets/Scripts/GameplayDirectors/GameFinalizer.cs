@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameFinalizer : MonoBehaviour, IPlayerDeathListener
 {
     [SerializeField] DeathMenu deathMenu;
+    [SerializeField] ScoreBoard scoreBoard;
 
     void Start()
     {
@@ -14,14 +15,41 @@ public class GameFinalizer : MonoBehaviour, IPlayerDeathListener
 
     void IPlayerDeathListener.OnPlayerDeath()
     {
-        if(!deathMenu)
+
+        showDeathMenu();
+        int scoreToSave = scoreBoard.CurrentScore;
+        for(int i = 1; i < 11; i++)
+        {
+            // porownuje od najwiekszego
+           int comparedScore = PlayerPrefs.GetInt("Score" + i);
+            // znalazlem pare
+            if(scoreToSave > comparedScore)
+            {
+                // wepchnij wynik w pare
+                PlayerPrefs.SetInt("Score" + i,scoreToSave);
+                return;
+                // reszta wynikow wzarsta o indeks
+            }
+        }
+        
+    }
+
+    void showDeathMenu()
+    {
+        if (!deathMenu)
         {
             Debug.Log("Brak referencji do menu smierci, dodaj ja kocie :*");
             return;
         }
+
         deathMenu.gameObject.SetActive(true);
-        Debug.Log("Player is ded.");
+
     }
 
-    
+
+    void injectIfHighScore(int scoreToSave, List<int> playerScores)
+    {
+        // check for highscores and swap if it occured
+ 
+    }
 }

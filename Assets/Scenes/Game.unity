@@ -731,6 +731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c813873e48bb44abfe7dd86180a719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathMenu: {fileID: 4126940}
+  scoreBoard: {fileID: 916944386}
 --- !u!1 &452269453
 GameObject:
   m_ObjectHideFlags: 0

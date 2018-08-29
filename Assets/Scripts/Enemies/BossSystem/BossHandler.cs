@@ -103,7 +103,7 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
 
                 if (wasNotUsed[i] == false) numerator++;
 
-                return false;
+                
 
         }
         if (numerator == BossesToSpawn.Count)
