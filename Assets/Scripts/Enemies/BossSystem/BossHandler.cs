@@ -21,8 +21,7 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
    [SerializeField]
     private List<BossSpawnParameters> BossesToSpawn = new List<BossSpawnParameters>();
     private int tableLenght;
-    // array nie jest dynamiczny odpada, lista niby guczi ale srednio sie z niej wyciaga okreslone elementy, slownik wyjdzie spoko
-    Dictionary<int, bool> wasNotUsed = new Dictionary<int, bool>();
+  
     private int randomBoss;
 
     public IBossListener waveBossListener;
@@ -37,15 +36,9 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
 
         ScoreBoard scoreBoard = FindObjectOfType<ScoreBoard>();
         scoreBoard.onScoreListener = this;
-        // Jesli tablica jest pusta, to w sumie skrypt nie ma co robic
-  
+
             tableLenght = BossesToSpawn.Count;
-       
-            // inicjalizacja slownika
-            for (int i = 0; i < tableLenght; i++)
-            {
-            wasNotUsed.Add(i, true);
-            }
+
 
 
 
@@ -55,68 +48,12 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
     public BossSpawnParameters GetBossToSpawn()
     {
         randomBoss = UnityEngine.Random.Range(0,tableLenght);
-     
-        while(!CheckIfWasSpawned(randomBoss))
-        {
-            randomBoss = UnityEngine.Random.Range(0, tableLenght);
-        }
-        print("Wylosowano bossa " + BossesToSpawn[randomBoss].objectToSpawn.name + " Nastepny index " );
         return BossesToSpawn[randomBoss] ;
     }
-    private bool CheckIfWasSpawned(int key)
-    {
-        if(CheckIfDictionaryFull())
-        {
-            ResetBosses();
-        }
- 
-        if (wasNotUsed[key])
-        {
-            wasNotUsed[key] = false;
-            return false;
-        }
-            else
-            {
-                return true;
-            }
-        }
-
-   
-       
 
     
 
-    private void ResetBosses()
-    {
-        
-        for(int i = 0; i < tableLenght; i++)
-        {
-            wasNotUsed[i] = true;
-        }
-    }
 
-    private bool CheckIfDictionaryFull()
-    {
-        // czy dictionary zapelnione
-        int numerator = 0;
-        for (int i = 0; i < tableLenght; i++)
-        {
-
-                if (wasNotUsed[i] == false) numerator++;
-            return false;
-                
-
-        }
-        if (numerator == BossesToSpawn.Count)
-        {
-            // trzeba wyczyscic tablice
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     public void OnScoreReached()
     {
