@@ -82,8 +82,20 @@ public class Meteor : MonoBehaviour {
                 break;
             case "Meteor":
                 break;
-            default:
+            case   "EnemyBullet":
+                MeteorDestruction();
                 collision.gameObject.SetActive(false);
+                break;
+            case "LaserProj":
+                MeteorDestruction();
+                collision.gameObject.SetActive(false);
+                break;
+            case "Bullet":
+                MeteorDestruction();
+                collision.gameObject.SetActive(false);
+                break;
+            default:
+                
                 
                 MeteorDestruction();
                 break;

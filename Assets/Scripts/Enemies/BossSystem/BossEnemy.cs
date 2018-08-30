@@ -6,7 +6,7 @@ public class BossEnemy : Enemy {
 
     public IBossEnemyListener bossDeathListener;
     [SerializeField] private AudioClip bossEntranceSound;
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
     // Use this for initialization
     void Start() {
         scoreBoard = FindObjectOfType<ScoreBoard>();
@@ -18,7 +18,7 @@ public class BossEnemy : Enemy {
     // Update is called once per frame
     void Awake()
     {
-        if(audioSource)
+        if(audioSource != null)
         { 
         audioSource.PlayOneShot(bossEntranceSound);
         }

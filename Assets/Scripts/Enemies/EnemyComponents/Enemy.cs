@@ -71,8 +71,11 @@ public class Enemy : MonoBehaviour {
     protected void ManageLife(GameObject other, int deductedHP)
     {
         currentHitpoints -= deductedHP;
+        if(other.tag != "Player")
+        { 
         other.SetActive(false);
-        if(currentHitpoints <= 0)
+        }
+        if (currentHitpoints <= 0)
         {
             ProcessEnemyDeath("");
         }
