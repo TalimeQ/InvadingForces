@@ -655,7 +655,7 @@ MonoBehaviour:
   - amountToPool: 15
     objectoPool: {fileID: 1515074881239120, guid: 462fd631c3497354abfe860ec60a10ea,
       type: 2}
-    shouldExpand: 0
+    shouldExpand: 1
   - amountToPool: 2
     objectoPool: {fileID: 1353063484363218, guid: 9cd9e9bddc5e96d4494a5fcc9751cdb4,
       type: 2}

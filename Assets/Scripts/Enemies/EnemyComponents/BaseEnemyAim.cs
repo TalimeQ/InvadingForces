@@ -71,7 +71,7 @@ public class BaseEnemyAim : MonoBehaviour {
     /// if it can, it modifies the timer for next shot
     /// </summary>
     /// <returns>True when enemy is able to attack, otherwise returns false</returns>
-     bool checkTimer()
+     protected bool checkTimer()
     {
 
         if (Time.time - nextShotTime > Mathf.Epsilon)
@@ -82,7 +82,7 @@ public class BaseEnemyAim : MonoBehaviour {
         else return false;
     }
 
-    bool RaycastForPlayer()
+    protected bool RaycastForPlayer()
     {
 
         RaycastHit2D hitResult = Physics2D.Raycast(transform.position, Vector2.down, 1000.0f, searchLayerIndex, 0.00f, 1.0f);

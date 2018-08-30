@@ -21,11 +21,13 @@ GameObject:
   - component: {fileID: 4575669965919836}
   - component: {fileID: 212555953035527126}
   - component: {fileID: 114727025663351818}
-  - component: {fileID: 114556207139860262}
-  - component: {fileID: 50449140130116064}
+  - component: {fileID: 114950819319790990}
   - component: {fileID: 114011301554304158}
-  - component: {fileID: 61699233119732044}
+  - component: {fileID: 114556207139860262}
   - component: {fileID: 82567562617772936}
+  - component: {fileID: 50449140130116064}
+  - component: {fileID: 61699233119732044}
+  - component: {fileID: 82357380863538958}
   m_Layer: 0
   m_Name: Boss
   m_TagString: EnemyShip2
@@ -91,6 +93,101 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.84, y: 0.58}
   m_EdgeRadius: 0
+--- !u!82 &82357380863538958
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714110752572918}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &82567562617772936
 AudioSource:
   m_ObjectHideFlags: 1
@@ -199,7 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 50
   bonusDropChance: 0
-  scoreForHit: 10
+  scoreForHit: 2
   scoreForKill: 25
   deathFX: {fileID: 1778038573275900, guid: f5b83bd2885499d4fa298be9e9449a7e, type: 2}
   bossEntranceSound: {fileID: 8300000, guid: 0688de1593ec3de4aab86f0bfaf1bc68, type: 3}
@@ -235,6 +332,24 @@ MonoBehaviour:
   minY: 4.3
   pseudoRandomRangeMin: 0.55
   pseudoRandomRangeMax: 0.65
+--- !u!114 &114950819319790990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714110752572918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770c24f0bc6b99249968b5e73eaa9be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadBetweenAttacks: 4
+  enemyProjectile: {fileID: 0}
+  shootAudioSource: {fileID: 82357380863538958}
+  shootSound: {fileID: 8300000, guid: c704fbe988bc1b24fb4899e0e3676466, type: 3}
+  numberOfShots: 20
+  shotInternalCD: 0.1
+  angle: 90
 --- !u!212 &212555953035527126
 SpriteRenderer:
   m_ObjectHideFlags: 1
