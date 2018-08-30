@@ -12,6 +12,9 @@ public class WaveController : MonoBehaviour , IBossListener{
     private int enemiesToSpawn = 2;
     [SerializeField]
     private float spawnDelay = 0.5f;
+    [SerializeField]
+    private float spawnInterval = 7.0f;
+
 
     bool spawnWaves = true;
 
@@ -66,7 +69,7 @@ public class WaveController : MonoBehaviour , IBossListener{
                 yield return new WaitForSeconds(spawnDelay);
             }
             // TODO : USUNAC SZTYWNIAKA
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(spawnInterval);
        // TODO doczytac o delegatach.
         }
     }

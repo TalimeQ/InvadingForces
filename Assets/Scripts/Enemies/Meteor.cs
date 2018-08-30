@@ -97,11 +97,11 @@ public class Meteor : MonoBehaviour {
             meteorFX.transform.position = transform.position;
             meteorFX.transform.rotation = Quaternion.identity;
             meteorFX.SetActive(true);
-            Debug.Log("SPAWNED METEOR");
+
         }
         else
         {
-            Debug.Log("DUPA");
+      
         }
         gameObject.SetActive(false);
     }

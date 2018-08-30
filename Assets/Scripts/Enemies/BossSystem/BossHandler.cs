@@ -88,6 +88,7 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
 
     private void ResetBosses()
     {
+        
         for(int i = 0; i < tableLenght; i++)
         {
             wasNotUsed[i] = true;
@@ -102,7 +103,7 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
         {
 
                 if (wasNotUsed[i] == false) numerator++;
-
+            return false;
                 
 
         }

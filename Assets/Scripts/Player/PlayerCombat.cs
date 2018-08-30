@@ -104,7 +104,7 @@ public class PlayerCombat : MonoBehaviour {
 
     private void ProcessHit(int damage)
     {
-        print("Player :: I've been hit for " + damage + "damage");
+
         hitPoints = hitPoints - damage;
         playerLifeListener.OnLifeLost(damage);
         if (hitPoints <= 0) 
@@ -128,7 +128,7 @@ public class PlayerCombat : MonoBehaviour {
         pickupDoDestroy.SetActive(false);
         if(hitPoints <= hitPointCap)
         {
-            print("Player :: hp up");
+
             hitPoints++;
             playerLifeListener.OnLifeGained();
         }
@@ -136,7 +136,7 @@ public class PlayerCombat : MonoBehaviour {
     }
     private void OnLaserPickup(GameObject pickupDoDestroy)
     {
-        print("Player :: laser picked up");
+
         laserAmmo += 30;
     }
 }

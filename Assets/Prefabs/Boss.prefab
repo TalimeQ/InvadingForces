@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714110752572918}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -12.773, y: -1.4664729, z: 0}
+  m_LocalPosition: {x: -1.032244, y: -2.3982105, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 12}
   m_Children: []
   m_Father: {fileID: 0}
@@ -197,11 +197,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacc4fb5001b8bb4ebdfc713a657ffd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 5
+  hitPoints: 50
   bonusDropChance: 0
   scoreForHit: 10
   scoreForKill: 25
-  deathParticle: {fileID: 0}
+  deathFX: {fileID: 1778038573275900, guid: f5b83bd2885499d4fa298be9e9449a7e, type: 2}
+  bossEntranceSound: {fileID: 8300000, guid: 0688de1593ec3de4aab86f0bfaf1bc68, type: 3}
 --- !u!114 &114556207139860262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reloadBetweenAttacks: 1.5
   enemyProjectile: {fileID: 0}
-  shootAudioSource: {fileID: 0}
+  shootAudioSource: {fileID: 82567562617772936}
   shootSound: {fileID: 8300000, guid: a2bc15a410424164384d482c15892a39, type: 3}
 --- !u!114 &114727025663351818
 MonoBehaviour:

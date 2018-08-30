@@ -9,10 +9,22 @@ public class HighScores : MonoBehaviour {
     [SerializeField] List<TextMeshProUGUI> scoreDisplay = new List<TextMeshProUGUI>();
 
     private void OnEnable()
-    { 
-        for (int i = 0;  i < 4 ; i ++)
+    {
+        Scores scores = JsonUtility.FromJson<Scores>(PlayerPrefs.GetString("Scores"));
+        if (scores == null)
         {
-            scoreDisplay[i].text = "" + PlayerPrefs.GetInt("Score" + (i+1));
+           
+            return;
+        }
+
+        else
+        {
+           
+            for (int i = 0; i < 4; i++)
+            {
+                scoreDisplay[i].SetText("" + scores.ReturnScore(i));
+ 
+            }
         }
     }
     // Use this for initialization

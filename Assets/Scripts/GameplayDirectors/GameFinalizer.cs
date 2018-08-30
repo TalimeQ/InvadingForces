@@ -15,22 +15,18 @@ public class GameFinalizer : MonoBehaviour, IPlayerDeathListener
 
     void IPlayerDeathListener.OnPlayerDeath()
     {
-
+        Scores scores = JsonUtility.FromJson<Scores>(PlayerPrefs.GetString("Scores"));
+   
+        if(scores == null || scores.highScores.Count == 0)
+        { 
+        scores = new Scores();
+        scores.Init();
+        }
         showDeathMenu();
         int scoreToSave = scoreBoard.CurrentScore;
-        for(int i = 1; i < 11; i++)
-        {
-            // porownuje od najwiekszego
-           int comparedScore = PlayerPrefs.GetInt("Score" + i);
-            // znalazlem pare
-            if(scoreToSave > comparedScore)
-            {
-                // wepchnij wynik w pare
-                PlayerPrefs.SetInt("Score" + i,scoreToSave);
-                return;
-                // reszta wynikow wzarsta o indeks
-            }
-        }
+        scores.AddScore(scoreToSave);
+        var savedScores = JsonUtility.ToJson(scores);
+        PlayerPrefs.SetString("Scores", savedScores);
         
     }
 
