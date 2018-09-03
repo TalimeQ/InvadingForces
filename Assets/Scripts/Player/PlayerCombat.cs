@@ -29,7 +29,10 @@ public class PlayerCombat : MonoBehaviour {
     [SerializeField]
     AudioClip standShotAudio;
 
-
+    protected SpriteRenderer spriteRendererRef;
+    [SerializeField]
+    Sprite DamageSprite;
+    protected Sprite normalSprite;
 
     IWeaponSwapListener weaponSwapListener;
     ILifeListener playerLifeListener;
@@ -42,6 +45,8 @@ public class PlayerCombat : MonoBehaviour {
         weaponSwapListener = FindObjectOfType<WeaponSwapper>();
         playerLifeListener = FindObjectOfType<LifeDisplayer>();
         playerDeathListener = FindObjectOfType<GameFinalizer>();
+        spriteRendererRef = GetComponent<SpriteRenderer>();
+        normalSprite = spriteRendererRef.sprite;
     }
     private void ProcessWeaponSwap()
     {
@@ -108,6 +113,7 @@ public class PlayerCombat : MonoBehaviour {
     {
 
         hitPoints = hitPoints - damage;
+        StartCoroutine(OnDamage());
         playerLifeListener.OnLifeLost(damage);
         if (hitPoints <= 0) 
         {
@@ -141,5 +147,15 @@ public class PlayerCombat : MonoBehaviour {
     {
 
         laserAmmo += 30;
+    }
+    IEnumerator OnDamage()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            spriteRendererRef.sprite = DamageSprite;
+            yield return new WaitForSeconds(0.15f);
+            spriteRendererRef.sprite = normalSprite;
+        }
+
     }
 }

@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 350
+  isEnemy: 0
 --- !u!212 &212413382992353004
 SpriteRenderer:
   m_ObjectHideFlags: 1
