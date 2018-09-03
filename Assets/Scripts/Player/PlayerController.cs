@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 
 
     bool processInput = true;
+    bool processClick = true;
 
     /// <summary>
     /// Toggles wheter or not player can consume input.
@@ -22,6 +23,10 @@ public class PlayerController : MonoBehaviour {
     public void toggleInputConsumption(bool consumeInput)
     {
         processInput = consumeInput;
+    }
+    public void toggleClickConsumption(bool consumeMouse)
+    {
+        processClick = consumeMouse;
     }
     private void Start()
     {
@@ -38,9 +43,12 @@ public class PlayerController : MonoBehaviour {
     private void ProcessInput()
     {
         ProcessMovement();
-
-        if (Input.GetButton("Fire1")) SendMessage("ProcessShooting");
         if (Input.GetButtonDown("WeaponSwap")) SendMessage("ProcessWeaponSwap");
+        if (processClick)
+        {
+            if (Input.GetButton("Fire1")) SendMessage("ProcessShooting");
+        }
+        
         
 
     }

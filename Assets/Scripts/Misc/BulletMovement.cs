@@ -10,6 +10,7 @@ public class BulletMovement : MonoBehaviour {
     [SerializeField] float bulletSpeed = 2.0f;
     public float BulletSpeed { get { return bulletSpeed; } }
     private Rigidbody2D bulletBody;
+    [SerializeField] bool isEnemy = false;
 
 
 
@@ -27,14 +28,46 @@ public class BulletMovement : MonoBehaviour {
 	}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bounds"))
+        if(isEnemy)
         {
-            gameObject.SetActive(false);
+            switch(collision.tag)
+            {
+                case "Player":
+                    gameObject.SetActive(false);
+                    break;
+                case "Bounds":
+                    gameObject.SetActive(false);
+                    break;
+                case "Meteor":
+                    gameObject.SetActive(false);
+                    break;
+                default:
+                return;
+            }
+
+               
         }
-        else if(collision.CompareTag("Meteor"))
+        else
         {
-            gameObject.SetActive(false);
+           switch(collision.tag)
+            {
+                case "EnemyShip1":
+                    gameObject.SetActive(false);
+                    break;
+                case "EnemyShip2":
+                    gameObject.SetActive(false);
+                    break;
+                case "Meteor":
+                    gameObject.SetActive(false);
+                    break;
+                case "Bounds":
+                    gameObject.SetActive(false);
+                    break;
+                default:
+                    return;
+            }
         }
+
         
     }
     private void OnCollisionEnter2D(Collision2D collision)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseController : MonoBehaviour {
+public class PauseController : MonoBehaviour , IPauseListener{
 
 
     [SerializeField] PauseMenu menuPauzy;
@@ -41,5 +41,10 @@ public class PauseController : MonoBehaviour {
             
             
         }
+    }
+
+    public void onPauseButtonClicked()
+    {
+        onPauseInputRecieved();
     }
 }
