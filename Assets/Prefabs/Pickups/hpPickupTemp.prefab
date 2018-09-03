@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61761978347500412}
   - component: {fileID: 50510076784242724}
   - component: {fileID: 114395555346655942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hpPickupTemp
   m_TagString: HpPickup
   m_Icon: {fileID: 0}

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50116978997603956}
   - component: {fileID: 61268144639551216}
   - component: {fileID: 114124587360969768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: laserPickup
   m_TagString: LaserPickup
   m_Icon: {fileID: 0}
