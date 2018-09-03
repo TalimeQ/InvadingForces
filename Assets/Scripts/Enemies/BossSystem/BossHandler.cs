@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Invading.Global;
 [System.Serializable]
  public struct BossSpawnParameters
 {
@@ -27,6 +28,7 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
     public IBossListener waveBossListener;
     public IBossListener meteorBossListener;
     public IBossListener scoreBoardListener;
+    public IBossListener musicPlayerListener;
     
     // TODO ZABEZPIECZYC TA FUNKCJE PRZED NULLAMI W TABLICY
 
@@ -39,7 +41,7 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
 
             tableLenght = BossesToSpawn.Count;
 
-
+        musicPlayerListener = FindObjectOfType<MusicPlayer>();
 
 
     }
@@ -73,6 +75,7 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
 
         waveBossListener.OnBossEnter(BossToSpawnParams.turnWaves);
         meteorBossListener.OnBossEnter(BossToSpawnParams.turnMeteors);
+        musicPlayerListener.OnBossEnter(false);
     }
 
     public void SignalizeDeath()
@@ -80,5 +83,6 @@ public class BossHandler : MonoBehaviour , IScoreBoardListener , IBossEnemyListe
         waveBossListener.OnBossDeath();
         meteorBossListener.OnBossDeath();
         scoreBoardListener.OnBossDeath();
+        musicPlayerListener.OnBossDeath();
     }
 }

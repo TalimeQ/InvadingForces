@@ -2136,7 +2136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 916944384}
-  bossSpawnLimit: 10
+  bossSpawnLimit: 100
 --- !u!1 &1004150292
 GameObject:
   m_ObjectHideFlags: 0

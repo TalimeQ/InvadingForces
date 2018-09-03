@@ -27,6 +27,7 @@ public class BossEnemy : Enemy {
         if(!spriteRendererRef) return;
         spriteRendererRef.sprite = normalSprite;
 
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
