@@ -15,6 +15,13 @@ public class PlayerCollision : MonoBehaviour {
     int meteorCollisionDamage = 2;
     ScoreBoard scoreBoardRef;
     int scorePerScorePickup = 2;
+
+
+    [SerializeField]
+    AudioClip pickupClip;
+    [SerializeField]
+    AudioSource playerAudioSource;
+
     // Use this for initialization
     private void Start()
     {
@@ -38,12 +45,15 @@ public class PlayerCollision : MonoBehaviour {
                 SendMessage("ProcessHit", largeShipCollisionDamage);
                 break;
             case "HpPickup":
+                PlayPickupSound();
                 SendMessage("OnLifePickup",collision.gameObject);
                 break;
             case "LaserPickup":
+                PlayPickupSound();
                 SendMessage("OnLaserPickup", collision.gameObject);
                 break;
             case "ScorePickup":
+                PlayPickupSound();
                 scoreBoardRef.addScore(scorePerScorePickup);
                 break;
             default:
@@ -54,5 +64,9 @@ public class PlayerCollision : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.LogWarning("Player Collision :: Unknown Trigger Collision");
+    }
+    void PlayPickupSound()
+    {
+        playerAudioSource.PlayOneShot(pickupClip);
     }
 }

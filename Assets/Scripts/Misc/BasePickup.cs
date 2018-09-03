@@ -21,6 +21,10 @@ public class BasePickup : MonoBehaviour {
         }
        else if(collision.CompareTag("Player"))
         {
+
+            
+
+         
             gameObject.SetActive(false);
         }
     }

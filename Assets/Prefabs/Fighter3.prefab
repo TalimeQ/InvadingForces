@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 114672588330826950}
   - component: {fileID: 114119085975977442}
   - component: {fileID: 114912041372766598}
-  - component: {fileID: 61589507816170402}
   - component: {fileID: 82616858340884278}
+  - component: {fileID: 60925610560756594}
   m_Layer: 0
   m_Name: Fighter3
   m_TagString: Player
@@ -39,14 +39,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1468772028599796}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -2, z: 1}
+  m_LocalPosition: {x: 0.0058, y: -2, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!61 &61589507816170402
-BoxCollider2D:
+--- !u!60 &60925610560756594
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -67,9 +67,17 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.57, y: 0.29}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.22914436, y: 0.05529946}
+      - {x: -0.015228497, y: 0.106833205}
+      - {x: -0.25244212, y: 0.1502057}
+      - {x: -0.2520316, y: 0.05732499}
+      - {x: -0.25029546, y: -0.14673528}
+      - {x: 0.00805913, y: -0.108560115}
+      - {x: 0.23326448, y: -0.043364435}
+      - {x: 0.28500012, y: -0.024188131}
+      - {x: 0.28500012, y: 0.035501093}
 --- !u!82 &82616858340884278
 AudioSource:
   m_ObjectHideFlags: 1
@@ -81,7 +89,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.553
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -178,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reloadTime: 0.3
   hitPointCap: 5
-  playerAudioSource: {fileID: 0}
+  playerAudioSource: {fileID: 82616858340884278}
   deathEffect: {fileID: 1778038573275900, guid: f5b83bd2885499d4fa298be9e9449a7e,
     type: 2}
   laserAudio: {fileID: 8300000, guid: 74681a21d0c66104d885fa8eb1a57e27, type: 3}
@@ -198,6 +206,8 @@ MonoBehaviour:
   smallShipCollisionDamage: 2
   enemyBulletCollisionDamage: 1
   meteorCollisionDamage: 2
+  pickupClip: {fileID: 8300000, guid: 316bb7b7a05ade9418818499fe19a792, type: 3}
+  playerAudioSource: {fileID: 82616858340884278}
 --- !u!114 &114912041372766598
 MonoBehaviour:
   m_ObjectHideFlags: 1

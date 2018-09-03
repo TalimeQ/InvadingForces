@@ -451,32 +451,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4115835391642888, guid: 96038f6596c88d644ac2f73288970412, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61589507816170402, guid: 96038f6596c88d644ac2f73288970412,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 0.0043192953
-      objectReference: {fileID: 0}
-    - target: {fileID: 61589507816170402, guid: 96038f6596c88d644ac2f73288970412,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.15466234
-      objectReference: {fileID: 0}
-    - target: {fileID: 61589507816170402, guid: 96038f6596c88d644ac2f73288970412,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61589507816170402, guid: 96038f6596c88d644ac2f73288970412,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 0.4260239
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 61589507816170402, guid: 96038f6596c88d644ac2f73288970412, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96038f6596c88d644ac2f73288970412, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &272168002
@@ -892,44 +867,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathMenu: {fileID: 4126940}
   scoreBoard: {fileID: 916944386}
---- !u!1 &403340229 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1468772028599796, guid: 96038f6596c88d644ac2f73288970412,
-    type: 2}
-  m_PrefabInternal: {fileID: 261166117}
---- !u!60 &403340231
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 403340229}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.57, y: 0.29}
-    newSize: {x: 0.57, y: 0.29}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.22914436, y: 0.05529946}
-      - {x: -0.015228497, y: 0.106833205}
-      - {x: -0.25244212, y: 0.1502057}
-      - {x: -0.2520316, y: 0.05732499}
-      - {x: -0.25029546, y: -0.14673528}
-      - {x: 0.00805913, y: -0.108560115}
-      - {x: 0.23326448, y: -0.043364435}
-      - {x: 0.28500012, y: -0.024188131}
-      - {x: 0.28500012, y: 0.035501093}
 --- !u!1 &452269453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,7 +2136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 916944384}
-  bossSpawnLimit: 100
+  bossSpawnLimit: 10
 --- !u!1 &1004150292
 GameObject:
   m_ObjectHideFlags: 0

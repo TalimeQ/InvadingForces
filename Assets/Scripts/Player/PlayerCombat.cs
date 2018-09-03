@@ -29,6 +29,8 @@ public class PlayerCombat : MonoBehaviour {
     [SerializeField]
     AudioClip standShotAudio;
 
+
+
     IWeaponSwapListener weaponSwapListener;
     ILifeListener playerLifeListener;
     IPlayerDeathListener playerDeathListener;
@@ -126,6 +128,7 @@ public class PlayerCombat : MonoBehaviour {
     private void OnLifePickup(GameObject pickupDoDestroy)
     {
         pickupDoDestroy.SetActive(false);
+
         if(hitPoints < hitPointCap)
         {
 

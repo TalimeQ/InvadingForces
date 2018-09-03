@@ -102,7 +102,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a7e5b7f3b25339141b0cf5726297937f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -202,6 +202,7 @@ MonoBehaviour:
   scoreForHit: 0
   scoreForKill: 3
   deathFX: {fileID: 1778038573275900, guid: f5b83bd2885499d4fa298be9e9449a7e, type: 2}
+  DamageSprite: {fileID: 21300000, guid: d0534a2122a0ede4abb978543f0e1d52, type: 3}
 --- !u!114 &114048953972187242
 MonoBehaviour:
   m_ObjectHideFlags: 1

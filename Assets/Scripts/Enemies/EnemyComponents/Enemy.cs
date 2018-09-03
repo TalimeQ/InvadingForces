@@ -24,12 +24,19 @@ public class Enemy : MonoBehaviour {
     protected ScoreBoard scoreBoard;
     [SerializeField][Tooltip("Particle effect used on enemy death")]
     protected GameObject deathFX;
-   
+
+    protected SpriteRenderer spriteRendererRef;
+    [SerializeField]
+    Sprite DamageSprite;
+    protected Sprite normalSprite;
+
     private IEnemyListener enemyDeathListener;
 
     void Start () {
        scoreBoard = FindObjectOfType<ScoreBoard>();
         PickupSpawner pickupSpawner = FindObjectOfType<PickupSpawner>();
+        spriteRendererRef = GetComponent<SpriteRenderer>();
+        normalSprite = spriteRendererRef.sprite;
         enemyDeathListener = pickupSpawner;
 		
 	}
@@ -38,6 +45,8 @@ public class Enemy : MonoBehaviour {
     private void OnEnable()
     {
         currentHitpoints = hitPoints;
+        if (!spriteRendererRef) return;
+        spriteRendererRef.sprite = normalSprite;
         
     }
 
@@ -71,6 +80,7 @@ public class Enemy : MonoBehaviour {
     protected void ManageLife(GameObject other, int deductedHP)
     {
         currentHitpoints -= deductedHP;
+        StartCoroutine(SignalDamaged());
         if(other.tag != "Player")
         { 
         other.SetActive(false);
@@ -108,5 +118,15 @@ public class Enemy : MonoBehaviour {
     {
         
     }
+    protected IEnumerator SignalDamaged()
+    {
 
+        for (int i = 0; i < 3 ; i++)
+        {
+            spriteRendererRef.sprite = DamageSprite;
+            yield return new WaitForSeconds(0.15f);
+            spriteRendererRef.sprite = normalSprite;
+        }
+       
+    }
 }

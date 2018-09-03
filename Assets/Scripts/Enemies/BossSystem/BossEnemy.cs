@@ -12,6 +12,8 @@ public class BossEnemy : Enemy {
         scoreBoard = FindObjectOfType<ScoreBoard>();
         audioSource = GetComponent<AudioSource>();
         BossHandler bossHandler = FindObjectOfType<BossHandler>();
+        spriteRendererRef = GetComponent<SpriteRenderer>();
+        normalSprite = spriteRendererRef.sprite;
         bossDeathListener = bossHandler;
     }
 
@@ -22,6 +24,9 @@ public class BossEnemy : Enemy {
         { 
         audioSource.PlayOneShot(bossEntranceSound);
         }
+        if(!spriteRendererRef) return;
+        spriteRendererRef.sprite = normalSprite;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
