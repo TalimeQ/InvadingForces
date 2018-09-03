@@ -82,6 +82,12 @@ public class ObstacleSpawner : MonoBehaviour, IBossListener {
                 if(randomSpeed)
                 {
                     meteorComp.FloatingSpeed = Random.Range(minSpeed, maxSpeed);
+                    float scale = Random.Range(0.8f, 1.4f);
+                    meteorComp.transform.localScale = new Vector3(scale,scale,scale);
+                    if(scale - 1.2f >= Mathf.Epsilon)
+                    {
+                        meteorComp.Hp = 2;
+                    }
                 }
                 meteor.SetActive(true);
             }

@@ -118,7 +118,7 @@ public class PlayerCombat : MonoBehaviour {
             }
             gameObject.SetActive(false);
             playerDeathListener.OnPlayerDeath();
-            // play some cool FX here
+            
         }
     }
 

@@ -15,10 +15,16 @@ public class Meteor : MonoBehaviour {
     private Rigidbody2D meteorBody;
     [SerializeField]
     private GameObject DeathFX;
+    [SerializeField]
+    private int hp = 1;
+    public int Hp {  set { hp = value; } }
 
     void OnEnable()
     {
-        
+        if(hp <= 0)
+        {
+            hp = 1;
+        }
         if(transform.position.x < 0 )
         {
             isMovingLeft = false;
@@ -68,7 +74,6 @@ public class Meteor : MonoBehaviour {
         switch(collision.tag)
         {
             case "Player":
-               
                 MeteorDestruction();
                 break;
             case "Bounds":
@@ -83,15 +88,15 @@ public class Meteor : MonoBehaviour {
             case "Meteor":
                 break;
             case   "EnemyBullet":
-                MeteorDestruction();
+                ManageHp();
                 collision.gameObject.SetActive(false);
                 break;
             case "LaserProj":
-                MeteorDestruction();
+                ManageHp();
                 collision.gameObject.SetActive(false);
                 break;
             case "Bullet":
-                MeteorDestruction();
+                ManageHp();
                 collision.gameObject.SetActive(false);
                 break;
             default:
@@ -116,5 +121,13 @@ public class Meteor : MonoBehaviour {
       
         }
         gameObject.SetActive(false);
+    }
+    void ManageHp()
+    {
+        hp--;
+        if(hp <= 0)
+        {
+            MeteorDestruction();
+        }
     }
 }
