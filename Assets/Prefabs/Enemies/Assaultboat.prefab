@@ -237,7 +237,7 @@ MonoBehaviour:
   pseudoRandomRangeMax: 0.5
   minMovementLoops: 2
   maxMovementLoops: 5
-  downwardSpeed: 6
+  downwardSpeed: 14
 --- !u!212 &212714999645873046
 SpriteRenderer:
   m_ObjectHideFlags: 1
