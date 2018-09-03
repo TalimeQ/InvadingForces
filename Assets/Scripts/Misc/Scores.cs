@@ -29,7 +29,6 @@ public class Scores {
         {
             highScores[i] = highScores[i - 1];
         }
-        Debug.Log(index);
        highScores[index] = scoreToAdd;
     }
 

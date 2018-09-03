@@ -26,7 +26,7 @@ public class BossEnemy : Enemy {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(gameObject.name + " Collided from boss");
+       
         switch (collision.tag)
         {
 

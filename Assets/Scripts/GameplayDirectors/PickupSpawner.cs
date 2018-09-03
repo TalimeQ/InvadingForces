@@ -10,7 +10,7 @@ public class PickupSpawner : MonoBehaviour , IEnemyListener {
     int ScorePickupChance = 35;
     public void OnEnemyDeath(Transform deathPos,int chanceBonus)
     {
-        Debug.Log("Want to spawn pickup!");
+       
       if(RollForPickupChance(chanceBonus))
         {
             string pickupTag = RollForPickup();

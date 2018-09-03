@@ -51,7 +51,7 @@ public class PlayerCombat : MonoBehaviour {
     private void ProcessShooting()
     {
 
-        print("FIRING");
+        
         if (NextFireTime <= Time.time)
         {
             if (!isLaserActive)

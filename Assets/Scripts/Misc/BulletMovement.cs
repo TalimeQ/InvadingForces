@@ -73,7 +73,7 @@ public class BulletMovement : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
        
-            print("Bullet collided");
+           
         gameObject.SetActive(false);
 
     }
