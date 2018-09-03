@@ -126,7 +126,7 @@ public class PlayerCombat : MonoBehaviour {
     private void OnLifePickup(GameObject pickupDoDestroy)
     {
         pickupDoDestroy.SetActive(false);
-        if(hitPoints <= hitPointCap)
+        if(hitPoints < hitPointCap)
         {
 
             hitPoints++;
