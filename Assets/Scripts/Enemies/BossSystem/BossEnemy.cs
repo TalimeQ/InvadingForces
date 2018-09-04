@@ -57,7 +57,7 @@ public class BossEnemy : Enemy {
     {
         bossDeathListener.SignalizeDeath();
         scoreBoard.addScore(scoreForKill);
-        
+        SpawnFX(1.6f);
         Destroy(gameObject);
         
         

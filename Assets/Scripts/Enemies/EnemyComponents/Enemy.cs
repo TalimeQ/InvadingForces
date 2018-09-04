@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviour {
     protected void ManageLife(GameObject other, int deductedHP)
     {
         currentHitpoints -= deductedHP;
+        if (gameObject.activeInHierarchy == false) return;
         StartCoroutine(SignalDamaged());
         if(other.tag != "Player")
         { 
@@ -97,21 +98,27 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void ProcessEnemyDeath(string tag)
     {
-        enemyDeathListener.OnEnemyDeath(gameObject.transform,bonusDropChance);
-       
+        enemyDeathListener.OnEnemyDeath(gameObject.transform, bonusDropChance);
+
         gameObject.SetActive(false);
-        GameObject deathEffect = ObjectPooler.SharedInstance.GetPooledObject(deathFX.tag);
-        if(deathEffect)
-        {
-            deathEffect.transform.position = this.transform.position;
-            deathEffect.transform.rotation = Quaternion.identity;
-            deathEffect.SetActive(true);
-        }
-        if(tag == "")
+        SpawnFX(1);
+        if (tag == "")
         {
             scoreBoard.addScore(scoreForKill);
         }
-        
+
+    }
+
+    protected void SpawnFX(float scale)
+    {
+        GameObject deathEffect = ObjectPooler.SharedInstance.GetPooledObject(deathFX.tag);
+        if (deathEffect)
+        {
+            deathEffect.transform.position = this.transform.position;
+            deathEffect.transform.rotation = Quaternion.identity;
+            deathEffect.transform.localScale = new Vector3(scale, scale, scale);
+            deathEffect.SetActive(true);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
