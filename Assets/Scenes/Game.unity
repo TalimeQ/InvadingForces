@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1590052779}
+  gameFinalizer: {fileID: 0}
 --- !u!1 &22748508
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +803,7 @@ MonoBehaviour:
   - amountToPool: 10
     objectoPool: {fileID: 1060082885339342, guid: 3414abc3a397c584d958be62ecdbc4d7,
       type: 2}
-    shouldExpand: 0
+    shouldExpand: 1
   - amountToPool: 10
     objectoPool: {fileID: 1778038573275900, guid: f5b83bd2885499d4fa298be9e9449a7e,
       type: 2}

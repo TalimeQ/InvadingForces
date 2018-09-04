@@ -57,7 +57,7 @@ public class PlayerCollision : MonoBehaviour {
                 scoreBoardRef.addScore(scorePerScorePickup);
                 break;
             default:
-                Debug.LogWarning("Player Collision :: Unknown Trigger Collision");
+                Debug.LogWarning("Player Collision :: Unknown Trigger Collision with object " + collision.gameObject.name);
                 break;
         }
     }

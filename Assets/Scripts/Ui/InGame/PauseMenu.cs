@@ -8,12 +8,14 @@ using Invading.Global;
 public  class PauseMenu : MonoBehaviour {
 
     [SerializeField] PlayerController playerController;
- 
+    [SerializeField] GameFinalizer gameFinalizer;
     
 
     private void Start()
     {
-        if (!playerController) FindObjectOfType<PlayerController>();
+        if (!playerController) playerController = FindObjectOfType<PlayerController>();
+        if (!gameFinalizer) gameFinalizer = FindObjectOfType<GameFinalizer>();
+
       
     }
     public  void Pause()
@@ -32,7 +34,7 @@ public  class PauseMenu : MonoBehaviour {
     }
     public void ReturnToMenu()
     {
-   
+        gameFinalizer.SaveScore();
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
         

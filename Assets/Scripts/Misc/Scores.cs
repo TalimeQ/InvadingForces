@@ -16,7 +16,7 @@ public class Scores {
     public void AddScore(int scoreToAdd)
     {
 
-        int index = 0;
+        int index = 30;
         foreach (int i in highScores)
         {
             if(i < scoreToAdd )
@@ -25,6 +25,7 @@ public class Scores {
                 break;
             }
         }
+        if (index == 30) return;
         for(int i = highScores.Count-1; i > index; i--)
         {
             highScores[i] = highScores[i - 1];

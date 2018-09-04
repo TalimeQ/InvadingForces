@@ -15,19 +15,23 @@ public class GameFinalizer : MonoBehaviour, IPlayerDeathListener
 
     void IPlayerDeathListener.OnPlayerDeath()
     {
-        Scores scores = JsonUtility.FromJson<Scores>(PlayerPrefs.GetString("Scores"));
-   
-        if(scores == null || scores.highScores.Count == 0)
-        { 
-        scores = new Scores();
-        scores.Init();
-        }
+        SaveScore();
         showDeathMenu();
+    }
+
+    public void SaveScore()
+    {
+        Scores scores = JsonUtility.FromJson<Scores>(PlayerPrefs.GetString("Scores"));
+
+        if (scores == null || scores.highScores.Count == 0)
+        {
+            scores = new Scores();
+            scores.Init();
+        }
         int scoreToSave = scoreBoard.CurrentScore;
         scores.AddScore(scoreToSave);
         var savedScores = JsonUtility.ToJson(scores);
         PlayerPrefs.SetString("Scores", savedScores);
-        
     }
 
     void showDeathMenu()
@@ -41,7 +45,7 @@ public class GameFinalizer : MonoBehaviour, IPlayerDeathListener
         deathMenu.gameObject.SetActive(true);
 
     }
-
+    
 
     void injectIfHighScore(int scoreToSave, List<int> playerScores)
     {
