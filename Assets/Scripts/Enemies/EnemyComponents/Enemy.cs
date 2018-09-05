@@ -99,7 +99,6 @@ public class Enemy : MonoBehaviour {
     protected virtual void ProcessEnemyDeath(string tag)
     {
         enemyDeathListener.OnEnemyDeath(gameObject.transform, bonusDropChance);
-
         gameObject.SetActive(false);
         SpawnFX(1);
         if (tag == "")
